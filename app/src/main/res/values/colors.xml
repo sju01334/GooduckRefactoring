@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+<!--    custom color-->
+    <color name="gooduckPrimary">#7180FD</color>
+    <color name="darkGray">#333333</color>
+    <color name="mediumGray">#666666</color>
+    <color name="lightGray">#F5F5F5</color>
+
+
 </resources>
