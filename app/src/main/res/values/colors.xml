@@ -13,7 +13,11 @@
     <color name="gooduckPrimary">#7180FD</color>
     <color name="darkGray">#333333</color>
     <color name="mediumGray">#666666</color>
+    <color name="lightMediumGray">#dedede</color>
+
     <color name="lightGray">#F5F5F5</color>
+    <color name="kakaoColor">#FFE812</color>
+    <color name="naverColor">#56BC3D</color>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.nepplus.gooduck.models
+package com.gooduckrefactoring.dto
 
 import java.io.Serializable
 

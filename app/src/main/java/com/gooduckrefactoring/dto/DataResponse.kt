@@ -1,5 +1,6 @@
-package com.nepplus.gooduck.models
+package com.gooduckrefactoring.dto
 
+import com.nepplus.gooduck.models.*
 import java.io.Serializable
 
 data class DataResponse(

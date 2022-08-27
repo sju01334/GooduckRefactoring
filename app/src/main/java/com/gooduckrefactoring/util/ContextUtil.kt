@@ -15,7 +15,7 @@ class ContextUtil {
         private val RECENT_SEARCH = "RECENT_SEARCH"
 
         fun setLoginToken (context : Context, token : String){
-            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            val pref =  context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             pref.edit().putString(LOGIN_TOKEN, token).apply()
         }
 
