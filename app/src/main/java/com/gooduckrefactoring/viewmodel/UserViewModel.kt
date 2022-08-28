@@ -26,23 +26,10 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     }
 
     init {
-        viewModelScope.launch {
-            repository!!.getRequestMyInfo().enqueue(object : Callback<BasicResponse>{
-                override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                    if(response.isSuccessful) {
-                        val br = response.body()!!
-                        ContextUtil.setLoginToken(application, br.data.token)
-                        _user.value = br.data.user
-                    }
-                }
-
-                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                    t.message?.let { Log.d("########", it) }
-                }
-            })
-        }
-
+        viewModelScope.launch { _user.value = repository!!.getRequestMyInfo() }
     }
+
+
 
 
 }

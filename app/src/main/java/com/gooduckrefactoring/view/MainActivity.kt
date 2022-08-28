@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.ActivityMainBinding
+import com.nepplus.gooduck.utils.ContextUtil
 
 class MainActivity() : BaseActivity<ActivityMainBinding>() {
 
@@ -14,7 +15,8 @@ class MainActivity() : BaseActivity<ActivityMainBinding>() {
 
 
 
-
+        setupEvents()
+        setValues()
     }
 
     override fun setupEvents() {
@@ -22,6 +24,8 @@ class MainActivity() : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun setValues() {
+
+        binding.txt.text = ContextUtil.getLoginToken(mContext)
     }
 
 
