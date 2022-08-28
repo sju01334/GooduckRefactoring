@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gooduckrefactoring.repository.UserRepository
 
-class UserViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+class LoginViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
-            return UserViewModel(application) as T
+        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+            return LoginViewModel(application) as T
         }
         throw IllegalArgumentException("Not found ViewModel class.")
     }

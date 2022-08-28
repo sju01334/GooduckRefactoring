@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GooduckRefactoring</string>
+
+    <string name="email">이메일</string>
+    <string name="email_error">올바른 이메일을 입력해 주세요</string>
+    <string name="pw">비밀번호</string>
+    <string name="pw_error">6자리 이상 입력해주세요</string>
 </resources>

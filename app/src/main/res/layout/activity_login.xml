@@ -2,6 +2,12 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.gooduckrefactoring.viewmodel.LoginViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,8 +19,8 @@
         android:id="@+id/EmailTxt"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        android:textColor="@color/mediumGray"
-        android:text="이메일"
+        android:textColor="@{viewModel.isEmailError ? @color/red : @color/mediumGray}"
+        android:text="@{viewModel.isEmailError ? @string/email_error : @string/email}"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="12dp"
@@ -26,7 +32,8 @@
             android:layout_height="50dp"
             android:hint="abc@naver.com"
             android:paddingStart="10dp"
-            android:background="@drawable/r5_lightmediumgray_stroke_1px"
+            android:afterTextChanged="@{viewModel::isEmailValid}"
+            android:background="@{viewModel.isEmailError ? @drawable/r5_red_stroke_1px : @drawable/r5_lightmediumgray_stroke_1px}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EmailTxt"/>
@@ -35,8 +42,8 @@
             android:id="@+id/PWTxt"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
-            android:textColor="@color/mediumGray"
-            android:text="비밀번호"
+            android:textColor="@{viewModel.isPWError ? @color/red : @color/mediumGray}"
+            android:text="@{viewModel.isPWError ? @string/pw_error : @string/pw}"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="12dp"
@@ -46,9 +53,10 @@
             android:id="@+id/PWEdt"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:background="@drawable/r5_lightmediumgray_stroke_1px"
+            android:background="@{viewModel.isPWError ? @drawable/r5_red_stroke_1px : @drawable/r5_lightmediumgray_stroke_1px}"
             android:hint="6자 이상의 비밀번호"
             android:paddingStart="10dp"
+            android:afterTextChanged="@{viewModel::isPasswordValid}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/PWTxt"/>

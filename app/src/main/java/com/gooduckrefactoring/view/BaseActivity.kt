@@ -2,6 +2,7 @@ package com.gooduckrefactoring.view
 
 import android.content.Context
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -12,10 +13,15 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
+import androidx.viewbinding.ViewBinding
 import com.gooduckrefactoring.R
 
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
+
+    lateinit var binding : T
+    abstract val layoutId : Int
 
     lateinit var mContext: Context
 
@@ -30,6 +36,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, layoutId)
         mContext = this
 
         supportActionBar?.let {
