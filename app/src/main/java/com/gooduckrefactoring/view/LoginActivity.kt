@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.ActivityLoginBinding
@@ -33,26 +34,21 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
 
     override fun setupEvents() {
         binding.loginBtn.setOnClickListener {
-            viewModel.userClicksOnButton(true, binding.EmailEdt.text.toString(), binding.PWEdt.text.toString())
+            viewModel.normalLogin( binding.EmailEdt.text.toString(), binding.PWEdt.text.toString())
         }
 
     }
 
     override fun setValues() {
-        viewModel.navigateToDetails.observe(binding.lifecycleOwner!!) { event ->
-            Log.e("event handled tag", "writePostEvent before -> ${event.hasBeenHandled}")
+        viewModel.response.observe(binding.lifecycleOwner!!) {
+//            Log.e("event handled tag", "writePostEvent before -> ${event.hasBeenHandled}")
 
-            if(viewModel.isLoginOk){
-                event.getContentIfNotHandled()?.let {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-            }else{
-                Toast.makeText(this, viewModel.errorMessage.value, Toast.LENGTH_SHORT).show()
-            }
-
-            Log.e("event handled tag", "writePostEvent after -> ${event.hasBeenHandled}")
-
+            startActivity(Intent(this, MainActivity::class.java))
+            Toast.makeText(this, it.message , Toast.LENGTH_SHORT).show()
         }
+
+        viewModel.errorMessage.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
     }
 }
