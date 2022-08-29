@@ -29,20 +29,19 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     var isTokenOk = false
 
     private val viewModel by lazy {
-        ViewModelProvider(this, UserViewModelFactory(application)).get(UserViewModel::class.java)
+        ViewModelProvider(this, UserViewModelFactory(application))[UserViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setupEvents()
         setValues()
     }
 
     override fun setupEvents() {
 
-        viewModel.user.observe(this, Observer {
-            it ?: let {
+        viewModel.user.observe(this, Observer { user ->
+            user ?: let {
                 isTokenOk = true
             }
         })
@@ -56,7 +55,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         myHandler.postDelayed({
 
             val myIntent : Intent
-            if(isTokenOk && ContextUtil.getAutoLogin(mContext)){
+            if(isTokenOk){
                 Toast.makeText(mContext, "${GlobalData.loginUser!!.nickname}님 환영합니다", Toast.LENGTH_SHORT).show()
 
                 myIntent = Intent(mContext, MainActivity::class.java)
@@ -75,5 +74,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         var keyHash = Utility.getKeyHash(mContext)
 
         Log.d("kakao_keyHash", keyHash)
+    }
+
+    override fun initAppbar() {
+
     }
 }

@@ -47,6 +47,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     abstract fun setupEvents()
     abstract fun setValues()
+    abstract fun initAppbar()
 
     open fun setCustomActionBar() {
 

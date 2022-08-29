@@ -4,26 +4,39 @@
     package="com.gooduckrefactoring">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".GooduckRefactoring"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GooduckRefactoring"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.SmsActivity"
+            android:exported="true" >
+
+        </activity>
+        <activity
             android:name=".view.LoginActivity"
-            android:theme="@style/Theme.GooduckRefactoring"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.GooduckRefactoring" />
         <activity
             android:name=".view.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.GooduckRefactoring.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +44,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.MainActivity"
-            android:exported="false"/>
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao4a4a43a6cf8ba4b8e5dee89bc53e5b0c" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

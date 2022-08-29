@@ -13,6 +13,8 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <item name="actionBarTheme">@style/MyActionBar</item>
+        <item name="buttonStyle">@style/MyButtonStyle</item>
+
         <!-- Customize your theme here. -->
     </style>
 
@@ -26,6 +28,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/gooduckPrimary</item>
         <!-- Customize your theme here. -->
         <item name="android:windowDisablePreview">true</item>
+        <item name="buttonStyle">@style/MyButtonStyle</item>
     </style>
 
 
@@ -35,6 +38,8 @@
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">#FFFFFF</item>
     </style>
+
+    <style name="MyButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless"></style>
 
 
     <!--    bottom sheet style -->

@@ -7,6 +7,6 @@ class GooduckRefactoring : Application() {
     override fun onCreate() {
         super.onCreate()
 //        Kakao SDK 초기화
-        KakaoSdk.init(this, "18171fed1b973091a1c0759889030a4d")
+        KakaoSdk.init(this, "4a4a43a6cf8ba4b8e5dee89bc53e5b0c")
     }
 }
