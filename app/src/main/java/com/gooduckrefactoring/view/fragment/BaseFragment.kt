@@ -18,7 +18,7 @@ import androidx.viewbinding.ViewBinding
     abstract fun setupEvents()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false )
 
         init()

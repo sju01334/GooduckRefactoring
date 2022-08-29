@@ -1,7 +1,9 @@
 package com.kurly.kurlyapplication.ui.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.FragmentMyGooduckBinding
 import com.gooduckrefactoring.view.fragment.BaseFragment

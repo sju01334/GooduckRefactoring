@@ -13,6 +13,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     override val layoutId: Int =R.layout.fragment_category
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

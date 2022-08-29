@@ -1,7 +1,9 @@
 package com.kurly.kurlyapplication.ui.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.HomeViewPagerAdapter
 import com.gooduckrefactoring.databinding.FragmentHomeBinding

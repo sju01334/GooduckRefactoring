@@ -1,6 +1,7 @@
 package com.gooduckrefactoring.view
 
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.MainViewPagerAdapter
@@ -8,8 +9,8 @@ import com.gooduckrefactoring.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private lateinit var mPagerAdapter: MainViewPagerAdapter
     override val layoutId: Int = R.layout.activity_main
+    private lateinit var mPagerAdapter: MainViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +46,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             when (it.itemId) {
                 R.id.home -> {
                     binding.mainViewPager.currentItem = 0
-
                 }
                 R.id.category -> {
                     binding.mainViewPager.currentItem = 1
@@ -56,7 +56,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.myKurly -> {
                     binding.mainViewPager.currentItem = 3
                 }
-
             }
             return@setOnItemSelectedListener true
         }
