@@ -8,6 +8,6 @@ data class SmallCategory(
     val name : String,
     @SerializedName("large_category_id")
     val largeCategoryId : Int,
-    var imageUrl : String
+    var image : Int
 ) : Serializable{
 }
