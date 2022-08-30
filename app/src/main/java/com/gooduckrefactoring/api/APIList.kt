@@ -95,6 +95,10 @@ interface APIList {
     @GET("/main/banner")
     fun getRequestBanner() : Call<BasicResponse>
 
+    @GET("/product")
+    fun getRequestAllProduct() : Call<BasicResponse>
+
+
     //  category
     @GET("/category")
     fun getRequestAllCategory() : Call<BasicResponse>

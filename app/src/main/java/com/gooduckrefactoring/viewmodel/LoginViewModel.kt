@@ -184,7 +184,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             repository!!.postRequestSocialLogin(provider, uid, nick) {
                 if (it is Result.Success) {
                     _response.value = it.data
-                    ContextUtil.setLoginToken(getApplication(), it.data.data!!.token)
 //                        Log.d("로그인정보", it.data.data.toString())
                 } else if (it is Result.Error) {
                     _errorMessage.value = it.exception

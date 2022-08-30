@@ -1,6 +1,7 @@
 package com.gooduckrefactoring.view
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.gooduckrefactoring.R
@@ -62,7 +63,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initAppbar() {
-
+        logo.isVisible = true
+        bagBtn.isVisible = true
+        titleTxt.isVisible = false
+        backBtn.isVisible = false
     }
 
 

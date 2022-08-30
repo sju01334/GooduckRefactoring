@@ -102,4 +102,6 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.4.2'
     implementation 'androidx.room:room-runtime:2.4.2'
 
+    implementation "com.github.skydoves:expandablelayout:1.0.7"
+
 }

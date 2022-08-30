@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gooduckrefactoring.R
+import com.gooduckrefactoring.api.RetrofitInstance
 import com.gooduckrefactoring.databinding.ActivityLoginBinding
 import com.gooduckrefactoring.viewmodel.LoginViewModel
 import com.gooduckrefactoring.viewmodel.LoginViewModelFactory
@@ -20,6 +21,7 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
+import com.nepplus.gooduck.utils.ContextUtil
 
 class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
 
@@ -64,7 +66,8 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
     override fun setValues() {
         viewModel.response.observe(binding.lifecycleOwner!!) {
 //            Log.e("event handled tag", "writePostEvent before -> ${event.hasBeenHandled}")
-
+            it.data?.let { it1 -> ContextUtil.setLoginToken(this, it1.token) }
+            RetrofitInstance.token = ContextUtil.getLoginToken(this)
             startActivity(Intent(this, MainActivity::class.java))
             Toast.makeText(this, it.message , Toast.LENGTH_SHORT).show()
         }
