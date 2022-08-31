@@ -12,7 +12,10 @@ import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.ItemTagBinding
 
 
-class TagRecyclerviewAdapter(val type : String): ListAdapter <String, TagRecyclerviewAdapter.ItemViewHolder>(differ) {
+class TagRecyclerviewAdapter(
+    val type : String,
+    val itemClick: (String) -> Unit
+    ): ListAdapter <String, TagRecyclerviewAdapter.ItemViewHolder>(differ) {
 
     inner class ItemViewHolder(val binding: ItemTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -24,6 +27,10 @@ class TagRecyclerviewAdapter(val type : String): ListAdapter <String, TagRecycle
             if(type == "recommend"){
                 binding.tagItemBackground.setBackgroundResource(R.drawable.r15_lightprimary_solid)
                 binding.tagTxt.setTextColor(R.color.gooduckPrimary)
+            }
+
+            binding.tagTxt.setOnClickListener {
+                itemClick(item)
             }
 
 

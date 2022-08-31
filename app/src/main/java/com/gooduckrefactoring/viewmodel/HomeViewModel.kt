@@ -1,9 +1,7 @@
 package com.gooduckrefactoring.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.gooduckrefactoring.repository.remote.HomeRepository
 import com.gooduckrefactoring.repository.remote.ReviewRepository
 import com.gooduckrefactoring.util.Result
@@ -38,6 +36,9 @@ class HomeViewModel() : ViewModel() {
 
     private val _reviewItemList: MutableLiveData<List<Review>> = MutableLiveData()
     val reviewItemList: LiveData<List<Review>> get() = _reviewItemList
+
+    private val _searchProduct: MutableLiveData<List<Product>> = MutableLiveData()
+    val searchProduct: LiveData<List<Product>> get() = _searchProduct
 
 
     private val homeRepository by lazy {
@@ -101,6 +102,20 @@ class HomeViewModel() : ViewModel() {
                 }
             }
 
+        }
+    }
+
+    fun searchProduct(name : String) {
+        val searchList  = mutableListOf<Product>()
+
+        for(product in productItemList.value!!){
+            if(product.name == name){
+                Log.d("###", product.name)
+                Log.d("###", name)
+                searchList.add(product)
+                Log.d("###", searchList.size.toString())
+                _searchProduct.value = searchList
+            }
         }
     }
 

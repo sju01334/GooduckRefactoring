@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.ItemCategoryBinding
-import com.gooduckrefactoring.databinding.ItemProductBinding
 import com.gooduckrefactoring.util.MyItemDecoration
 import com.nepplus.gooduck.models.Category
 

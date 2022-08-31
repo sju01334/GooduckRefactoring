@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.BannerRecyclerviewAdapter
-import com.gooduckrefactoring.adapter.ProductRecyclerviewAdapter
+import com.gooduckrefactoring.adapter.ProductHorizonRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentTodayBinding
 import com.gooduckrefactoring.view.fragment.BaseFragment
 import com.gooduckrefactoring.viewmodel.HomeViewModel
@@ -20,7 +20,7 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
 
     override val layoutId: Int = R.layout.fragment_today
     private lateinit var bannerViewPager: BannerRecyclerviewAdapter
-    private lateinit var productAdapter: ProductRecyclerviewAdapter
+    private lateinit var productAdapter: ProductHorizonRecyclerviewAdapter
 
     private val viewModel by lazy {
         ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
@@ -89,7 +89,7 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
 
     private fun initProductRecyclerview(){
         binding.productRecyclerView.apply {
-            productAdapter = ProductRecyclerviewAdapter()
+            productAdapter = ProductHorizonRecyclerviewAdapter()
             adapter = productAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }

@@ -75,7 +75,7 @@
                 tools:itemCount="1"
                 android:layout_marginStart="16dp"
                 android:adjustViewBounds="true"
-                tools:listitem="@layout/item_product"
+                tools:listitem="@layout/item_product_horizon"
                 android:layout_marginTop="10dp"/>
 
             <Space

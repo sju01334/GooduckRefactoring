@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.gooduckrefactoring.databinding.ItemProductBinding
+import com.gooduckrefactoring.databinding.ItemProductFullBinding
+import com.gooduckrefactoring.databinding.ItemProductHorizonBinding
 import com.nepplus.gooduck.models.Product
 
 
-class ProductRecyclerviewAdapter: ListAdapter <Product, ProductRecyclerviewAdapter.ItemViewHolder>(differ) {
+class ProductFullRecyclerviewAdapter: ListAdapter <Product, ProductFullRecyclerviewAdapter.ItemViewHolder>(differ) {
 
-    inner class ItemViewHolder(val binding: ItemProductBinding) :
+    inner class ItemViewHolder(val binding: ItemProductFullBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Product) {
@@ -31,7 +32,7 @@ class ProductRecyclerviewAdapter: ListAdapter <Product, ProductRecyclerviewAdapt
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemProductFullBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
@@ -43,6 +44,8 @@ class ProductRecyclerviewAdapter: ListAdapter <Product, ProductRecyclerviewAdapt
     override fun getItemCount(): Int {
         return currentList.size
     }
+
+
 
     companion object {
 
@@ -57,6 +60,7 @@ class ProductRecyclerviewAdapter: ListAdapter <Product, ProductRecyclerviewAdapt
 
         }
     }
+
 
 
 }
