@@ -47,15 +47,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             when (it.itemId) {
                 R.id.home -> {
                     binding.mainViewPager.currentItem = 0
+                    changeAppbar(0)
                 }
                 R.id.category -> {
                     binding.mainViewPager.currentItem = 1
+                    changeAppbar(1)
                 }
                 R.id.search -> {
                     binding.mainViewPager.currentItem = 2
+                    changeAppbar(2)
                 }
                 R.id.myKurly -> {
                     binding.mainViewPager.currentItem = 3
+                    changeAppbar(3)
                 }
             }
             return@setOnItemSelectedListener true
@@ -69,5 +73,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         backBtn.isVisible = false
     }
 
+    private fun changeAppbar(nav: Int) {
 
+        if (nav == 0) {
+            initAppbar()
+        } else {
+            logo.isVisible = false
+            titleTxt.isVisible = true
+
+            if (nav == 1) {
+                titleTxt.text = "카테고리"
+            } else if (nav == 2) {
+                titleTxt.text = "검색"
+            } else {
+                titleTxt.text = "마이구독"
+            }
+        }
+
+
+    }
 }

@@ -12,7 +12,7 @@ import com.gooduckrefactoring.databinding.ItemProductBinding
 import com.nepplus.gooduck.models.Product
 
 
-class productRecyclerviewAdapter: ListAdapter <Product, productRecyclerviewAdapter.ItemViewHolder>(differ) {
+class ProductRecyclerviewAdapter: ListAdapter <Product, ProductRecyclerviewAdapter.ItemViewHolder>(differ) {
 
     inner class ItemViewHolder(val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {

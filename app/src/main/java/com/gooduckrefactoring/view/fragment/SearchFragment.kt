@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.FragmentSearchBinding
+import com.gooduckrefactoring.view.MainActivity
 import com.gooduckrefactoring.view.fragment.BaseFragment
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
@@ -25,9 +27,33 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override fun setupEvents() {
 
+        binding.searchEdt.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus){
+                (requireActivity() as MainActivity).supportActionBar!!.hide()
+                binding.backToSearch.isVisible = true
+
+            }else{
+                (requireActivity() as MainActivity).supportActionBar!!.show()
+                binding.backToSearch.isVisible = false
+            }
+        }
+
+        binding.backToSearch.setOnClickListener {
+            (requireActivity() as MainActivity).supportActionBar!!.show()
+            binding.backToSearch.isVisible = false
+        }
+
+
     }
 
     override fun setValues() {
+
+    }
+
+    fun initrecommandLayout(){
+        val stringList = listOf("스팸", "호빵", "왕란", "콘푸로스트", "딸기")
+
+
     }
 
 
