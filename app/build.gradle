@@ -104,4 +104,7 @@ dependencies {
 
     implementation "com.github.skydoves:expandablelayout:1.0.7"
 
+    //FlexLayout
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
 }

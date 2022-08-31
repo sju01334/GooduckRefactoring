@@ -1,5 +1,6 @@
 package com.gooduckrefactoring.adapter
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,19 +8,23 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.gooduckrefactoring.databinding.ItemBannerBinding
+import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.ItemTagBinding
-import com.nepplus.gooduck.models.Banner
 
 
-class RecommandRecyclerviewAdapter: ListAdapter <String, RecommandRecyclerviewAdapter.ItemViewHolder>(differ) {
+class TagRecyclerviewAdapter(val type : String): ListAdapter <String, TagRecyclerviewAdapter.ItemViewHolder>(differ) {
 
     inner class ItemViewHolder(val binding: ItemTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("ResourceAsColor")
         fun bind(item: String) {
 
+            binding.tagTxt.text = item
+            if(type == "recommend"){
+                binding.tagItemBackground.setBackgroundResource(R.drawable.r15_lightprimary_solid)
+                binding.tagTxt.setTextColor(R.color.gooduckPrimary)
+            }
 
 
 

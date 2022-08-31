@@ -11,21 +11,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CategoryRepository() {
+class ReviewRepository() {
 
     companion object {
-        private var instance: CategoryRepository? = null
+        private var instance: ReviewRepository? = null
 
-        fun getInstance(): CategoryRepository? { // singleton pattern
+        fun getInstance(): ReviewRepository? { // singleton pattern
             if (instance == null) {
-                instance = CategoryRepository()
+                instance = ReviewRepository()
             }
             return instance
         }
     }
 
-    suspend fun getRequestAllCategory(result: (Result<BasicResponse>) -> Unit) {
-        RetrofitInstance.apiList.getRequestAllCategory().enqueue(object : Callback<BasicResponse> {
+    suspend fun getRequestAllReview(result: (Result<BasicResponse>) -> Unit) {
+        RetrofitInstance.apiList.getRequestAllReview().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     result(Result.Success(response.body()!!))

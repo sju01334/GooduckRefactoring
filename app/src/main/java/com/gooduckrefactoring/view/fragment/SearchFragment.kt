@@ -1,17 +1,31 @@
 package com.kurly.kurlyapplication.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gooduckrefactoring.R
+import com.gooduckrefactoring.adapter.RankRecyclerviewAdapter
+import com.gooduckrefactoring.adapter.TagRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentSearchBinding
 import com.gooduckrefactoring.view.MainActivity
 import com.gooduckrefactoring.view.fragment.BaseFragment
+import com.gooduckrefactoring.viewmodel.HomeViewModel
+import com.gooduckrefactoring.viewmodel.HomeViewModelFactory
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     override val layoutId: Int = R.layout.fragment_search
+
+    lateinit var tagAdapter : TagRecyclerviewAdapter
+    lateinit var rankAdapter: RankRecyclerviewAdapter
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
+    }
 
     override fun init() {
 
@@ -23,6 +37,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         setupEvents()
         setValues()
+
+        initRecyclerview()
     }
 
     override fun setupEvents() {
@@ -47,12 +63,31 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     }
 
     override fun setValues() {
+        viewModel.recommendItem.observe(viewLifecycleOwner) {
+            tagAdapter.submitList(it)
+        }
+
+        viewModel.reviewItemList.observe(viewLifecycleOwner){
+            rankAdapter.submitList(it)
+        }
 
     }
 
-    fun initrecommandLayout(){
-        val stringList = listOf("스팸", "호빵", "왕란", "콘푸로스트", "딸기")
+    fun initRecyclerview(){
+        binding.recommendRecyclerview.apply {
+            tagAdapter = TagRecyclerviewAdapter("recommend")
+            adapter = tagAdapter
+            layoutManager = FlexboxLayoutManager(requireContext()).apply {
+                flexWrap = FlexWrap.WRAP
+                flexDirection = FlexDirection.ROW
+            }
+        }
 
+        binding.rankRecyclerview.apply {
+            rankAdapter = RankRecyclerviewAdapter()
+            adapter = rankAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
 
     }
 
