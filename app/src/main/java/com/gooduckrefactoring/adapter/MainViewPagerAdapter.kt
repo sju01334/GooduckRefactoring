@@ -3,10 +3,10 @@ package com.gooduckrefactoring.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.kurly.kurlyapplication.ui.fragment.CategoryFragment
+import com.gooduckrefactoring.view.fragment.CategoryFragment
 import com.kurly.kurlyapplication.ui.fragment.HomeFragment
 import com.kurly.kurlyapplication.ui.fragment.MyGooduckFragment
-import com.kurly.kurlyapplication.ui.fragment.SearchFragment
+import com.gooduckrefactoring.view.fragment.SearchFragment
 
 class MainViewPagerAdapter(fa : FragmentActivity) : FragmentStateAdapter(fa) {
 

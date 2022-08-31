@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gooduckrefactoring.repository.HomeRepository
-import com.gooduckrefactoring.repository.ReviewRepository
+import com.gooduckrefactoring.repository.remote.HomeRepository
+import com.gooduckrefactoring.repository.remote.ReviewRepository
 import com.gooduckrefactoring.util.Result
 import com.nepplus.gooduck.models.Banner
 import com.nepplus.gooduck.models.Product

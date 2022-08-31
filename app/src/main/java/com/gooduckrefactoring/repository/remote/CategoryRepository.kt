@@ -1,31 +1,29 @@
-package com.gooduckrefactoring.repository
+package com.gooduckrefactoring.repository.remote
 
 import android.util.Log
 import com.gooduckrefactoring.api.RetrofitInstance
 import com.gooduckrefactoring.dto.BasicResponse
 import com.gooduckrefactoring.util.Result
-import com.nepplus.gooduck.models.UserData
-import com.nepplus.gooduck.utils.ContextUtil
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ReviewRepository() {
+class CategoryRepository() {
 
     companion object {
-        private var instance: ReviewRepository? = null
+        private var instance: CategoryRepository? = null
 
-        fun getInstance(): ReviewRepository? { // singleton pattern
+        fun getInstance(): CategoryRepository? { // singleton pattern
             if (instance == null) {
-                instance = ReviewRepository()
+                instance = CategoryRepository()
             }
             return instance
         }
     }
 
-    suspend fun getRequestAllReview(result: (Result<BasicResponse>) -> Unit) {
-        RetrofitInstance.apiList.getRequestAllReview().enqueue(object : Callback<BasicResponse> {
+    suspend fun getRequestAllCategory(result: (Result<BasicResponse>) -> Unit) {
+        RetrofitInstance.apiList.getRequestAllCategory().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     result(Result.Success(response.body()!!))

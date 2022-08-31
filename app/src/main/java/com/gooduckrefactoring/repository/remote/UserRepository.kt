@@ -1,4 +1,4 @@
-package com.gooduckrefactoring.repository
+package com.gooduckrefactoring.repository.remote
 
 import android.util.Log
 import com.gooduckrefactoring.api.RetrofitInstance

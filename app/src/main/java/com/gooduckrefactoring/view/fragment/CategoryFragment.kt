@@ -1,4 +1,4 @@
-package com.kurly.kurlyapplication.ui.fragment
+package com.gooduckrefactoring.view.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.CategoryRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentCategoryBinding
-import com.gooduckrefactoring.view.fragment.BaseFragment
 import com.gooduckrefactoring.viewmodel.CategoryViewModel
 import com.gooduckrefactoring.viewmodel.CategoryViewModelFactory
 

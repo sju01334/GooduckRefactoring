@@ -3,10 +3,10 @@ package com.gooduckrefactoring.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.kurly.kurlyapplication.ui.fragment.homefragment.BestFragment
-import com.kurly.kurlyapplication.ui.fragment.homefragment.CheapFragment
-import com.kurly.kurlyapplication.ui.fragment.homefragment.NewFragment
-import com.kurly.kurlyapplication.ui.fragment.homefragment.TodayFragment
+import com.gooduckrefactoring.view.fragment.homefragment.BestFragment
+import com.gooduckrefactoring.view.fragment.homefragment.CheapFragment
+import com.gooduckrefactoring.view.fragment.homefragment.NewFragment
+import com.gooduckrefactoring.view.fragment.homefragment.TodayFragment
 
 class HomeViewPagerAdapter(fa : FragmentActivity) : FragmentStateAdapter(fa) {
 

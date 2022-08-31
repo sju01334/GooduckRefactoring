@@ -1,11 +1,9 @@
-package com.gooduckrefactoring.repository
+package com.gooduckrefactoring.repository.remote
 
 import android.util.Log
 import com.gooduckrefactoring.api.RetrofitInstance
 import com.gooduckrefactoring.dto.BasicResponse
 import com.gooduckrefactoring.util.Result
-import com.nepplus.gooduck.models.UserData
-import com.nepplus.gooduck.utils.ContextUtil
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback

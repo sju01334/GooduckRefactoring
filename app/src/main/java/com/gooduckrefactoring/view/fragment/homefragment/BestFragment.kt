@@ -1,4 +1,4 @@
-package com.kurly.kurlyapplication.ui.fragment.homefragment
+package com.gooduckrefactoring.view.fragment.homefragment
 
 import android.os.Bundle
 import android.view.View

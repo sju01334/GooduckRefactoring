@@ -28,6 +28,10 @@
             android:drawablePadding="8dp"
             android:drawableTint="@color/mediumGray"
             android:hint="검색어를 입력해주세요"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+
             android:paddingStart="8dp"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="최근에 리뷰가 작성된 상품이에요"
-                        android:textSize="10dp" />
+                        android:textSize="10sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rankRecyclerview"

@@ -1,15 +1,13 @@
 package com.gooduckrefactoring.viewmodel
 
 import android.app.Application
-import android.telephony.PhoneNumberUtils
 import android.text.Editable
 import android.util.Log
-import android.util.Patterns
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gooduckrefactoring.dto.BasicResponse
-import com.gooduckrefactoring.repository.UserRepository
+import com.gooduckrefactoring.repository.remote.UserRepository
 import java.util.regex.Pattern
 
 
