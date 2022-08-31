@@ -11,4 +11,9 @@ class HistoryRepository(private val historyDao: HistoryDao) {
     suspend fun insertHistory(history : History){
         historyDao.insertHistory(history)
     }
+
+
+    suspend fun deleteAll(){
+        historyDao.deleteAll()
+    }
 }

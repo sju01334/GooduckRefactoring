@@ -41,7 +41,7 @@
             android:id="@+id/searchedRecyclerview"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="12dp"
+            android:paddingTop="12dp"
             android:background="@color/white"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/searchEdt"
@@ -57,6 +57,7 @@
             android:layout_marginHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:scrollbars="none"
             app:layout_constraintTop_toBottomOf="@id/searchEdt">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,13 +73,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="최근 검색어"
-                        android:textColor="@color/darkGray"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="최근 검색어"
+                            android:textColor="@color/darkGray"
+                            android:textStyle="bold" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/eraseAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="모두 지우기"
+                            android:textSize="12sp"
+                            android:textColor="@color/mediumGray" />
+                    </LinearLayout>
+
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recentRecyclerview"

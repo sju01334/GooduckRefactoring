@@ -26,6 +26,7 @@ import com.gooduckrefactoring.viewmodel.HomeViewModelFactory
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.nepplus.gooduck.models.Product
 import com.nepplus.gooduck.utils.AppUtil
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
@@ -56,10 +57,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         binding.searchedRecyclerview.bringToFront()
 
+        initRecyclerview()
         setupEvents()
         setValues()
 
-        initRecyclerview()
     }
 
     override fun setupEvents() {
@@ -84,10 +85,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         }
 
+        //imeOption 클릭 리스너
         binding.searchEdt.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 Log.d("%%", binding.searchEdt.text.toString())
-                searchItem()
+                searchItem(binding.searchEdt.text.toString())
 
             }
             true
@@ -95,18 +97,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         binding.searchEdt.addTextChangedListener(textWatcher)
 
+        binding.eraseAll.setOnClickListener {
+            historyViewModel.deleteAll()
+            binding.recentLayout.isVisible = false
+        }
+
 
     }
 
-    private fun searchItem() {
-        (requireActivity() as MainActivity).supportActionBar!!.hide()
-        binding.backToSearch.isVisible = true
-        homeViewModel.searchProduct(binding.searchEdt.text.toString())
-        binding.searchedRecyclerview.isVisible = true
-        AppUtil.hideSoftInput(requireContext(), binding.searchEdt)
-        //                binding.searchEdt.clearFocus()
-        historyViewModel.addHistory(History(null, binding.searchEdt.text.toString()))
-    }
+
 
     override fun setValues() {
         homeViewModel.recommendItem.observe(viewLifecycleOwner) {
@@ -119,19 +118,18 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         historyViewModel.allData.observe(viewLifecycleOwner){
             recentAdapter.submitList(it.map { it.keyword }.take(10))
+            (it.isNotEmpty()).also { binding.recentLayout.isVisible = it }
         }
 
-        homeViewModel.searchProduct.observe(viewLifecycleOwner){
-            productFullAdapter.submitList(it)
-        }
 
     }
 
     fun initRecyclerview(){
         binding.recommendRecyclerview.apply {
             tagAdapter = TagRecyclerviewAdapter("recommend"){
+                //추천 검색어 클릭 리스너
                 binding.searchEdt.setText(it)
-                searchItem()
+                searchItem(it)
             }
             adapter = tagAdapter
             layoutManager = FlexboxLayoutManager(requireContext()).apply {
@@ -141,15 +139,20 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         }
 
         binding.rankRecyclerview.apply {
-            rankAdapter = RankRecyclerviewAdapter()
+            rankAdapter = RankRecyclerviewAdapter{
+                binding.searchEdt.setText(it.product.name)
+                searchItem(it.product.name)
+                Log.d("%%%", it.product.name)
+            }
             adapter = rankAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
         binding.recentRecyclerview.apply {
             recentAdapter = TagRecyclerviewAdapter("recent"){
+                //클릭 리스너
                 binding.searchEdt.setText(it)
-                searchItem()
+                searchItem(it)
             }
             adapter = recentAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -162,6 +165,27 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         }
 
     }
+
+    private fun searchItem(name : String) {
+
+        val searchList  = mutableListOf<Product>()
+        val productList = homeViewModel.productItemListAll.value!!
+        for(i in productList.indices){
+            if(productList[i].name == name){
+                Log.d("$$", productList[i].name)
+                Log.d("$$", name)
+                searchList.add(productList[i])
+            }
+            productFullAdapter.submitList(searchList)
+        }
+        (requireActivity() as MainActivity).supportActionBar!!.hide()
+        binding.backToSearch.isVisible = true
+        binding.searchedRecyclerview.isVisible = true
+        AppUtil.hideSoftInput(requireContext(), binding.searchEdt)
+        //                binding.searchEdt.clearFocus()
+        historyViewModel.addHistory(History(null, name))
+    }
+
 
     private  val textWatcher = object  : TextWatcher{
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -176,7 +200,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             }
 
         }
-
     }
 
 

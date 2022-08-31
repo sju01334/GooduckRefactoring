@@ -27,4 +27,10 @@ class HistoryViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
+    fun deleteAll(){// 파라미터에 만든 데이터클래스가 들어갑니다.
+        viewModelScope.launch(Dispatchers.IO) { //코루틴 활성화 dispatcherIO는 백그라운드에서 실행
+            repository.deleteAll()
+        }
+    }
+
 }

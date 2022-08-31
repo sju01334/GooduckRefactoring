@@ -14,7 +14,7 @@ import com.gooduckrefactoring.databinding.ItemTagBinding
 import com.nepplus.gooduck.models.Review
 
 
-class RankRecyclerviewAdapter: ListAdapter <Review, RankRecyclerviewAdapter.ItemViewHolder>(differ) {
+class RankRecyclerviewAdapter( val itemClick: (Review) -> Unit): ListAdapter <Review, RankRecyclerviewAdapter.ItemViewHolder>(differ) {
 
     inner class ItemViewHolder(val binding: ItemRankBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -23,6 +23,10 @@ class RankRecyclerviewAdapter: ListAdapter <Review, RankRecyclerviewAdapter.Item
         fun bind(item: Review, position: Int) {
             binding.itemTxt.text = item.product.name
             binding.number.text = "${position+1}"
+
+            binding.rankLayout.setOnClickListener {
+                itemClick(item)
+            }
 
         }
     }

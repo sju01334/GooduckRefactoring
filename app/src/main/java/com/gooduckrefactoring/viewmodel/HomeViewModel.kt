@@ -27,6 +27,9 @@ class HomeViewModel() : ViewModel() {
     private val _productItemList: MutableLiveData<List<Product>> = MutableLiveData()
     val productItemList: LiveData<List<Product>> get() = _productItemList
 
+    private val _productItemListAll: MutableLiveData<List<Product>> = MutableLiveData()
+    val productItemListAll: LiveData<List<Product>> get() = _productItemListAll
+
     private val _productItem: MutableLiveData<List<Product>> = MutableLiveData()
     val productItem: LiveData<List<Product>> get() = _productItem
 
@@ -36,10 +39,6 @@ class HomeViewModel() : ViewModel() {
 
     private val _reviewItemList: MutableLiveData<List<Review>> = MutableLiveData()
     val reviewItemList: LiveData<List<Review>> get() = _reviewItemList
-
-    private val _searchProduct: MutableLiveData<List<Product>> = MutableLiveData()
-    val searchProduct: LiveData<List<Product>> get() = _searchProduct
-
 
     private val homeRepository by lazy {
         HomeRepository.getInstance()
@@ -86,6 +85,7 @@ class HomeViewModel() : ViewModel() {
         viewModelScope.launch {
             homeRepository!!.getRequestAllProduct {
                 if (it is Result.Success) {
+                    _productItemListAll.value  = it.data.data!!.products
                     val productList = it.data.data!!.products.shuffled()
                     _productItemList.value = productList.take(5)
                 }
@@ -102,20 +102,6 @@ class HomeViewModel() : ViewModel() {
                 }
             }
 
-        }
-    }
-
-    fun searchProduct(name : String) {
-        val searchList  = mutableListOf<Product>()
-
-        for(product in productItemList.value!!){
-            if(product.name == name){
-                Log.d("###", product.name)
-                Log.d("###", name)
-                searchList.add(product)
-                Log.d("###", searchList.size.toString())
-                _searchProduct.value = searchList
-            }
         }
     }
 
