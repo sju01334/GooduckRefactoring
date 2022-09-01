@@ -23,7 +23,7 @@
             android:name=".view.ProductsActivity"
             android:exported="false"
             android:label="@string/title_activity_products"
-            android:theme="@style/Theme.GooduckRefactoring.NoActionBar" />
+            android:theme="@style/Theme.GooduckRefactoring" />
         <activity
             android:name=".view.SmsActivity"
             android:exported="true" >

@@ -95,6 +95,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
+
 //    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
 //        if (event?.action === MotionEvent.ACTION_DOWN) {
 //            val v = currentFocus
