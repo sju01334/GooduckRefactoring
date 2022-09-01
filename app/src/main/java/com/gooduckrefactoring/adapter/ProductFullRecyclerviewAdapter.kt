@@ -13,7 +13,9 @@ import com.gooduckrefactoring.databinding.ItemProductHorizonBinding
 import com.nepplus.gooduck.models.Product
 
 
-class ProductFullRecyclerviewAdapter: ListAdapter <Product, ProductFullRecyclerviewAdapter.ItemViewHolder>(differ) {
+class ProductFullRecyclerviewAdapter(
+    val onClick : (Product) -> Unit
+): ListAdapter <Product, ProductFullRecyclerviewAdapter.ItemViewHolder>(differ) {
 
     inner class ItemViewHolder(val binding: ItemProductFullBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -26,6 +28,10 @@ class ProductFullRecyclerviewAdapter: ListAdapter <Product, ProductFullRecyclerv
 
             binding.itemName.text = item.name
             binding.itemPrice.text = "${ item.price }원"
+
+            binding.addCartBtn.setOnClickListener {
+                onClick(item)
+            }
 
         }
     }

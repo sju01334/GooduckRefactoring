@@ -1,6 +1,7 @@
 package com.gooduckrefactoring.view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -40,7 +41,10 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
 
     private fun initRecyclerviewAdapter() {
         binding.selectedCategoryProductRecyclerView.apply {
-            productAdapter = ProductFullRecyclerviewAdapter()
+            productAdapter = ProductFullRecyclerviewAdapter(){
+                cartViewModel.addToCartItem(it.id)
+                Toast.makeText(this@ProductsActivity, "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+            }
             adapter = productAdapter
             layoutManager = GridLayoutManager(this@ProductsActivity, 2)
             addItemDecoration(MyItemDecoration(2, 20, false))

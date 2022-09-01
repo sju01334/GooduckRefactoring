@@ -20,13 +20,11 @@ import com.gooduckrefactoring.databinding.FragmentSearchBinding
 import com.gooduckrefactoring.dto.History
 import com.gooduckrefactoring.util.MyItemDecoration
 import com.gooduckrefactoring.view.MainActivity
-import com.gooduckrefactoring.viewmodel.HistoryViewModel
-import com.gooduckrefactoring.viewmodel.HistoryViewModelFactory
-import com.gooduckrefactoring.viewmodel.HomeViewModel
-import com.gooduckrefactoring.viewmodel.HomeViewModelFactory
+import com.gooduckrefactoring.viewmodel.*
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.nepplus.gooduck.models.Cart
 import com.nepplus.gooduck.models.Product
 import com.nepplus.gooduck.utils.AppUtil
 
@@ -43,8 +41,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     }
 
     private val historyViewModel by lazy {
-        ViewModelProvider(this, HistoryViewModelFactory(requireActivity()!!.application))[HistoryViewModel::class.java]
+        ViewModelProvider(this, HistoryViewModelFactory(requireActivity().application))[HistoryViewModel::class.java]
     }
+
+    private val cartViewModel by lazy {
+        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+    }
+
 
 
 
@@ -160,7 +163,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         }
 
         binding.searchedRecyclerview.apply {
-            productFullAdapter = ProductFullRecyclerviewAdapter()
+            productFullAdapter = ProductFullRecyclerviewAdapter(){
+                cartViewModel.addToCartItem(it.id)
+                Toast.makeText(requireContext(), "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+            }
             adapter = productFullAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
             addItemDecoration(MyItemDecoration(2, 16, false))
