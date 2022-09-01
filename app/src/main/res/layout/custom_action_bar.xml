@@ -11,45 +11,54 @@
         android:id="@+id/logo"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_gooduck_logo"
-        />
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_gooduck_logo" />
 
 
     <ImageView
         android:id="@+id/backBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_arrow"
-        android:padding="10dp"
         android:layout_gravity="center|start"
         android:layout_marginEnd="10dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_arrow"
         app:tint="@color/darkGray" />
-
 
 
     <TextView
         android:id="@+id/titleTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="로그인"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:textColor="@color/darkGray"
-        android:layout_gravity="center"/>
-
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 
     <ImageView
         android:id="@+id/bagBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:padding="14dp"
-        android:src="@drawable/ic_cart"
         android:layout_gravity="center|end"
-        android:layout_marginEnd="5dp" />
+        android:layout_marginEnd="5dp"
+        android:padding="14dp"
+        android:src="@drawable/ic_cart" />
 
+    <TextView
+        android:id="@+id/cartCnt"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        android:text="1"
+        android:textSize="8sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/oval_primary" />
 
 
 </FrameLayout>

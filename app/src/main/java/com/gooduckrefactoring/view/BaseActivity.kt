@@ -15,8 +15,13 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.gooduckrefactoring.R
+import com.gooduckrefactoring.viewmodel.CartViewModel
+import com.gooduckrefactoring.viewmodel.CartViewModelFactory
+import com.gooduckrefactoring.viewmodel.LoginViewModel
+import com.gooduckrefactoring.viewmodel.LoginViewModelFactory
 
 
 abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
@@ -27,6 +32,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     lateinit var mContext: Context
 
     lateinit var titleTxt: TextView
+    lateinit var cartCnt: TextView
 
     lateinit var bagBtn: ImageView
     lateinit var backBtn: ImageView
@@ -34,11 +40,18 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     lateinit var background: FrameLayout
 
+    private val viewModel by lazy {
+        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         mContext = this
+
+        viewModel.cartItemList.observe(this){
+            cartCnt.text = it.size.toString()
+        }
 
         supportActionBar?.let {
             setCustomActionBar()
@@ -61,6 +74,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         toolbar.setContentInsetsAbsolute(0, 0)
 
         titleTxt = defActionBar.customView.findViewById(R.id.titleTxt)
+        cartCnt = defActionBar.customView.findViewById(R.id.cartCnt)
         logo = defActionBar.customView.findViewById(R.id.logo)
         bagBtn = defActionBar.customView.findViewById(R.id.bagBtn)
         backBtn = defActionBar.customView.findViewById(R.id.backBtn)
@@ -95,7 +109,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
-
+// 얘는 포커스도 사라짐
 //    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
 //        if (event?.action === MotionEvent.ACTION_DOWN) {
 //            val v = currentFocus

@@ -3,10 +3,13 @@ package com.gooduckrefactoring.view
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.MainViewPagerAdapter
 import com.gooduckrefactoring.databinding.ActivityMainBinding
+import com.gooduckrefactoring.viewmodel.CartViewModel
+import com.gooduckrefactoring.viewmodel.CartViewModelFactory
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -16,10 +19,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        setupEvents()
-        setValues()
         initAppbar()
+        initAdapter()
+        setValues()
+        setupEvents()
     }
 
     override fun setupEvents() {
@@ -28,6 +31,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun setValues() {
 
+
+    }
+
+    private fun initAdapter() {
         mPagerAdapter = MainViewPagerAdapter(this)
         binding.mainViewPager.adapter = mPagerAdapter
 
