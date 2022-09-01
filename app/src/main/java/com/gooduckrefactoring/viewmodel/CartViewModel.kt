@@ -29,7 +29,7 @@ class CartViewModel() : ViewModel() {
 
     fun getAllCartItems() {
         viewModelScope.launch {
-            repository!!.getRequestMyCartList{
+            repository!!.getRequestMyCartList {
                 if (it is Result.Success) {
                     _cartItemList.value = it.data.data!!.carts
                 }
@@ -38,17 +38,15 @@ class CartViewModel() : ViewModel() {
         }
     }
 
-    fun addToCartItem(id : Int) {
+    fun addToCartItem(id: Int) {
         viewModelScope.launch {
-            repository!!.postRequestAddCart(id){
+            repository!!.postRequestAddCart(id) {
                 if (it is Result.Success) {
                 }
             }
 
         }
     }
-
-
 
 
 }

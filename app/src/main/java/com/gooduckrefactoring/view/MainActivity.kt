@@ -16,6 +16,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val layoutId: Int = R.layout.activity_main
     private lateinit var mPagerAdapter: MainViewPagerAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

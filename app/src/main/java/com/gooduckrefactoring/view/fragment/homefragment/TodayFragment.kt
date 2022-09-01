@@ -2,6 +2,7 @@ package com.gooduckrefactoring.view.fragment.homefragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,8 @@ import com.gooduckrefactoring.adapter.BannerRecyclerviewAdapter
 import com.gooduckrefactoring.adapter.ProductHorizonRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentTodayBinding
 import com.gooduckrefactoring.view.fragment.BaseFragment
+import com.gooduckrefactoring.viewmodel.CartViewModel
+import com.gooduckrefactoring.viewmodel.CartViewModelFactory
 import com.gooduckrefactoring.viewmodel.HomeViewModel
 import com.gooduckrefactoring.viewmodel.HomeViewModelFactory
 import kotlinx.coroutines.delay
@@ -22,8 +25,12 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
     private lateinit var bannerViewPager: BannerRecyclerviewAdapter
     private lateinit var productAdapter: ProductHorizonRecyclerviewAdapter
 
-    private val viewModel by lazy {
+    private val HomeViewModel by lazy {
         ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
+    }
+
+    private val cartViewModel by lazy {
+        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
     }
 
     override fun init() {
@@ -45,16 +52,16 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
     }
 
     override fun setValues() {
-        viewModel.bannerItemList.observe(viewLifecycleOwner) {
+        HomeViewModel.bannerItemList.observe(viewLifecycleOwner) {
             bannerViewPager.submitList(it)
             binding.totalBanner.text = it.size.toString()
         }
 
-        viewModel.currentPosition.observe(viewLifecycleOwner) {
+        HomeViewModel.currentPosition.observe(viewLifecycleOwner) {
             binding.bannerViewpager.currentItem = it
         }
 
-        viewModel.productItemList.observe(viewLifecycleOwner) {
+        HomeViewModel.productItemList.observe(viewLifecycleOwner) {
             productAdapter.submitList(it)
         }
 
@@ -66,8 +73,8 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             while (viewLifecycleOwner.lifecycleScope.isActive) {
                 delay(2000)
-                viewModel.getCurrentPosition()?.let {
-                    viewModel.setCurrentPosition(it.plus(1) % viewModel.getTotalBanner()!!)
+                HomeViewModel.getCurrentPosition()?.let {
+                    HomeViewModel.setCurrentPosition(it.plus(1) % HomeViewModel.getTotalBanner()!!)
                 }
             }
         }
@@ -81,7 +88,7 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     binding.currentBanner.text = "${position + 1}"
-                    viewModel.setCurrentPosition(position)
+                    HomeViewModel.setCurrentPosition(position)
                 }
             })
         }
@@ -89,7 +96,10 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
 
     private fun initProductRecyclerview(){
         binding.productRecyclerView.apply {
-            productAdapter = ProductHorizonRecyclerviewAdapter()
+            productAdapter = ProductHorizonRecyclerviewAdapter(){
+                cartViewModel.addToCartItem(it.id)
+                Toast.makeText(requireContext(), "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+            }
             adapter = productAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
