@@ -18,6 +18,7 @@ import com.gooduckrefactoring.adapter.RankRecyclerviewAdapter
 import com.gooduckrefactoring.adapter.TagRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentSearchBinding
 import com.gooduckrefactoring.dto.History
+import com.gooduckrefactoring.util.MyItemDecoration
 import com.gooduckrefactoring.view.MainActivity
 import com.gooduckrefactoring.viewmodel.HistoryViewModel
 import com.gooduckrefactoring.viewmodel.HistoryViewModelFactory
@@ -162,6 +163,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             productFullAdapter = ProductFullRecyclerviewAdapter()
             adapter = productFullAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
+            addItemDecoration(MyItemDecoration(2, 16, false))
         }
 
     }

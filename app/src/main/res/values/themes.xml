@@ -51,5 +51,7 @@
     <style name="BottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="backgroundTint">@android:color/transparent</item>
     </style>
+    <style name="Theme.GooduckRefactoring.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.GooduckRefactoring.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

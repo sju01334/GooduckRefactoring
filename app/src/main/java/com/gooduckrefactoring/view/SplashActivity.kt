@@ -34,6 +34,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setupEvents()
         setValues()
     }
@@ -41,8 +42,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     override fun setupEvents() {
 
         viewModel.user.observe(this, Observer { user ->
-            user ?: let {
+            if(user != null){
                 isTokenOk = true
+                GlobalData.loginUser = user
             }
         })
 
@@ -54,10 +56,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
         myHandler.postDelayed({
 
+            Log.d("ttt", isTokenOk.toString())
+
             val myIntent : Intent
             if(isTokenOk){
                 Toast.makeText(mContext, "${GlobalData.loginUser!!.nickname}님 환영합니다", Toast.LENGTH_SHORT).show()
-
                 myIntent = Intent(mContext, MainActivity::class.java)
 
             }else{

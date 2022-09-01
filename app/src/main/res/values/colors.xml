@@ -19,6 +19,7 @@
     <color name="lightGray">#F5F5F5</color>
     <color name="editTxtGray">#F4F4F4</color>
     <color name="tagGray">#eeeeee</color>
+    <color name="saleOrange">#e86c40</color>
 
     <color name="kakaoColor">#FFE812</color>
     <color name="naverColor">#56BC3D</color>

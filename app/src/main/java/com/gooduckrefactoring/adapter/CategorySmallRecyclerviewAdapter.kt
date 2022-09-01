@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gooduckrefactoring.databinding.ItemCategorySmallBinding
+import com.nepplus.gooduck.models.Review
 import com.nepplus.gooduck.models.SmallCategory
 
 
-class CategorySmallRecyclerviewAdapter : ListAdapter<SmallCategory, CategorySmallRecyclerviewAdapter.ItemViewHolder>(differ) {
+class CategorySmallRecyclerviewAdapter(
+) : ListAdapter<SmallCategory, CategorySmallRecyclerviewAdapter.ItemViewHolder>(differ) {
+
+    var onClickSmallItem : ((SmallCategory) -> Unit)? = null
 
     inner class ItemViewHolder(val binding: ItemCategorySmallBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -20,6 +24,10 @@ class CategorySmallRecyclerviewAdapter : ListAdapter<SmallCategory, CategorySmal
 
             binding.itemImg.setBackgroundResource(item.image)
             binding.itemName.text = item.name.replace("품", "")
+
+            binding.itemImg.setOnClickListener {
+                onClickSmallItem?.invoke(item)
+            }
 
         }
     }

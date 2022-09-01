@@ -65,11 +65,11 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
 
     override fun setValues() {
         viewModel.response.observe(binding.lifecycleOwner!!) {
-//            Log.e("event handled tag", "writePostEvent before -> ${event.hasBeenHandled}")
-            it.data?.let { it1 -> ContextUtil.setLoginToken(this, it1.token) }
+            it.data?.let { user -> ContextUtil.setLoginToken(this, user.token) }
             RetrofitInstance.token = ContextUtil.getLoginToken(this)
             startActivity(Intent(this, MainActivity::class.java))
             Toast.makeText(this, it.message , Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         viewModel.errorMessage.observe(this, Observer {

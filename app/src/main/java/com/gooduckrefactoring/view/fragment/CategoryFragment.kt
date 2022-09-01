@@ -1,12 +1,15 @@
 package com.gooduckrefactoring.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.CategoryRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentCategoryBinding
+import com.gooduckrefactoring.view.ProductsActivity
 import com.gooduckrefactoring.viewmodel.CategoryViewModel
 import com.gooduckrefactoring.viewmodel.CategoryViewModelFactory
 
@@ -14,6 +17,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     override val layoutId: Int =R.layout.fragment_category
     private lateinit var categoryAdapter: CategoryRecyclerviewAdapter
+
 
     private val viewModel by lazy {
         ViewModelProvider(this, CategoryViewModelFactory())[CategoryViewModel::class.java]
@@ -25,11 +29,18 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        setupEvents()
         setValues()
+        setupEvents()
     }
 
     override fun setupEvents() {
+        categoryAdapter.onClickItem = {
+            val myIntent = Intent(requireContext(), ProductsActivity::class.java)
+            myIntent.putExtra("id", it.id)
+            startActivity(myIntent)
+//            Toast.makeText(requireContext(), it.id.toString(), Toast.LENGTH_SHORT).show()
+        }
+
 
     }
 

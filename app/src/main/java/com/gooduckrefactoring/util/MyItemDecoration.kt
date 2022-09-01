@@ -4,22 +4,10 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.nepplus.gooduck.utils.AppUtil
 
 
-class MyItemDecoration : ItemDecoration() {
-    private var spanCount = 5
-    private var spacing = 16
-    private var includeEdge = false
-
-//    fun GridSpacingItemDecoration(spanCount: Int, spacing: Int, includeEdge: Boolean) {
-//        this.spanCount = spanCount
-//        this.spacing = spacing
-//        this.includeEdge = includeEdge
-//    }
-
+class MyItemDecoration(private val spanCount: Int, private val spacing: Int, private val includeEdge: Boolean) : ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        super.getItemOffsets(outRect, view, parent, state)
         val position = parent.getChildAdapterPosition(view) // item position
         val column = position % spanCount // item column
         if (includeEdge) {
@@ -37,5 +25,4 @@ class MyItemDecoration : ItemDecoration() {
             }
         }
     }
-
- }
+}

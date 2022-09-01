@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,13 +14,15 @@ import com.gooduckrefactoring.R
 import com.gooduckrefactoring.databinding.ItemCategoryBinding
 import com.gooduckrefactoring.util.MyItemDecoration
 import com.nepplus.gooduck.models.Category
+import com.nepplus.gooduck.models.SmallCategory
 
 
 class CategoryRecyclerviewAdapter(
-    val context : Context
+    val context : Context,
 ): ListAdapter <Category, CategoryRecyclerviewAdapter.ItemViewHolder>(differ) {
 
     lateinit var smallAdapter: CategorySmallRecyclerviewAdapter
+    var onClickItem : ((SmallCategory) -> Unit)? = null
 
     inner class ItemViewHolder(val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -33,10 +36,11 @@ class CategoryRecyclerviewAdapter(
                 smallAdapter = CategorySmallRecyclerviewAdapter()
                 adapter = smallAdapter
                 layoutManager = GridLayoutManager(context, 5)
-                addItemDecoration(MyItemDecoration())
+                addItemDecoration(MyItemDecoration(5, 16, false))
             }
 
             smallAdapter.submitList(item.smallCategories)
+            smallAdapter.onClickSmallItem = onClickItem
 
 
         }
