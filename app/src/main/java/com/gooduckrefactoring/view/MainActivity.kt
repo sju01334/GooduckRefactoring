@@ -32,7 +32,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun setValues() {
 
-
     }
 
     private fun initAdapter() {
