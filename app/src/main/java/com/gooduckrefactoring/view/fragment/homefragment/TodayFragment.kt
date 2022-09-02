@@ -29,9 +29,18 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
         ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
     }
 
+    /*before (안되는거)
     private val cartViewModel by lazy {
         ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+    }*/
+
+    // after (되는거)
+    private val cartViewModel by lazy {
+        ViewModelProvider(requireActivity())[CartViewModel::class.java]
     }
+
+    // after 2 (이것도 됩니다)
+//    private val cartViewModel: CartViewModel by activityViewModels()
 
     override fun init() {
 
