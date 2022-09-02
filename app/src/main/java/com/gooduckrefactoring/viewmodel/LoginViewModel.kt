@@ -34,12 +34,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private var _isPWError = MutableLiveData<Boolean>()
     private var _response = MutableLiveData<BasicResponse>()
     private var _errorMessage = MutableLiveData<String?>()
+    val errorMessage: MutableLiveData<String?> get() = _errorMessage
 
 
     val isEmailError: LiveData<Boolean> get() = _isEmailError
     val isPWError: LiveData<Boolean> get() = _isPWError
     val response: LiveData<BasicResponse> get() = _response
-    val errorMessage: MutableLiveData<String?> get() = _errorMessage
 
     private val repository by lazy {
         UserRepository.getInstance()

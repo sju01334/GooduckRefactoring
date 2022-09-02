@@ -1,7 +1,6 @@
 package com.gooduckrefactoring.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,17 +9,11 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gooduckrefactoring.R
-import com.gooduckrefactoring.api.RetrofitInstance
 import com.gooduckrefactoring.databinding.ActivitySplashBinding
-import com.gooduckrefactoring.dto.BasicResponse
 import com.gooduckrefactoring.viewmodel.UserViewModel
 import com.gooduckrefactoring.viewmodel.UserViewModelFactory
 import com.kakao.sdk.common.util.Utility
-import com.nepplus.gooduck.utils.ContextUtil
 import com.nepplus.gooduck.utils.GlobalData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
@@ -28,7 +21,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     var isTokenOk = false
 
-    private val viewModel by lazy {
+    private val userViewModel by lazy {
         ViewModelProvider(this, UserViewModelFactory(application))[UserViewModel::class.java]
     }
 
@@ -41,7 +34,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun setupEvents() {
 
-        viewModel.user.observe(this, Observer { user ->
+        userViewModel.user.observe(this, Observer { user ->
             if(user != null){
                 isTokenOk = true
                 GlobalData.loginUser = user

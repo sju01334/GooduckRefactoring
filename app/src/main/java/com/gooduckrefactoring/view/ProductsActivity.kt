@@ -25,7 +25,7 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
     }
 
     private val cartViewModel by lazy {
-        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+        ViewModelProvider(this)[CartViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

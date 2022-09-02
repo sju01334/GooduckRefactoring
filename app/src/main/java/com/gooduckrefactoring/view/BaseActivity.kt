@@ -40,16 +40,26 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     lateinit var background: FrameLayout
 
-    private val viewModel by lazy {
-        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+
+    companion object{
+        var viewModel : CartViewModel? = null
     }
+
+
+//    private val viewModel by lazy {
+//        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         mContext = this
 
-        viewModel.cartItemList.observe(this){
+        if(viewModel== null){
+            viewModel = ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+        }
+
+        viewModel!!.cartItemList.observe(this){
             cartCnt.text = it.size.toString()
         }
 

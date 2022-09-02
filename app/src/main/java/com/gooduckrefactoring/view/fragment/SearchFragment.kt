@@ -45,7 +45,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     }
 
     private val cartViewModel by lazy {
-        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+        ViewModelProvider(requireActivity())[CartViewModel::class.java]
     }
 
 
