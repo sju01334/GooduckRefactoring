@@ -14,6 +14,7 @@ data class DataResponse(
     val replies : List<Reply>,
     val cards : List<Card>,
     val point_logs : List<Point>,
-    val payments : List<Payment>
+    val payments : List<Payment>,
+    val cart : Cart,
 ): Serializable {
 }
