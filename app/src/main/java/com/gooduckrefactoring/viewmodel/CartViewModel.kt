@@ -29,6 +29,7 @@ class CartViewModel() : ViewModel() {
         viewModelScope.launch {
             repository!!.getRequestMyCartList {
                 if (it is Result.Success) {
+                    list.clear()
                     list.addAll(it.data.data!!.carts)
                     _cartItemList.postValue(list)
                 }
