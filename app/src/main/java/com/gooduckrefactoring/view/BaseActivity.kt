@@ -22,6 +22,7 @@ import com.gooduckrefactoring.viewmodel.CartViewModel
 import com.gooduckrefactoring.viewmodel.CartViewModelFactory
 import com.gooduckrefactoring.viewmodel.LoginViewModel
 import com.gooduckrefactoring.viewmodel.LoginViewModelFactory
+import com.nepplus.gooduck.utils.ContextUtil
 
 
 abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
@@ -50,9 +51,11 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, layoutId)
         mContext = this
 
-        viewModel.cartItemList.observe(this){
-            cartCnt.text = it.size.toString()
-        }
+
+            viewModel.cartItemList.observe(this){
+                cartCnt.text = it.size.toString()
+            }
+
 
         supportActionBar?.let {
             setCustomActionBar()

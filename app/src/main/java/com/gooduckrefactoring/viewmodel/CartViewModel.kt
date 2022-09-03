@@ -1,12 +1,11 @@
 package com.gooduckrefactoring.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gooduckrefactoring.repository.remote.CartRepository
-import com.gooduckrefactoring.util.Result
+import com.gooduckrefactoring.data.cart.CartRepository
+import com.gooduckrefactoring.data.Result
 import com.nepplus.gooduck.models.*
 import kotlinx.coroutines.launch
 

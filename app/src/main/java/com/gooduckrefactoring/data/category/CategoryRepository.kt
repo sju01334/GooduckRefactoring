@@ -1,29 +1,29 @@
-package com.gooduckrefactoring.repository.remote
+package com.gooduckrefactoring.data.category
 
 import android.util.Log
 import com.gooduckrefactoring.api.RetrofitInstance
+import com.gooduckrefactoring.data.Result
 import com.gooduckrefactoring.dto.BasicResponse
-import com.gooduckrefactoring.util.Result
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CartRepository() {
+class CategoryRepository() {
 
     companion object {
-        private var instance: CartRepository? = null
+        private var instance: CategoryRepository? = null
 
-        fun getInstance(): CartRepository? { // singleton pattern
+        fun getInstance(): CategoryRepository? { // singleton pattern
             if (instance == null) {
-                instance = CartRepository()
+                instance = CategoryRepository()
             }
             return instance
         }
     }
 
-    suspend fun getRequestMyCartList(result: (Result<BasicResponse>) -> Unit) {
-        RetrofitInstance.apiList.getRequestMyCartList().enqueue(object : Callback<BasicResponse> {
+    suspend fun getRequestAllCategory(result: (Result<BasicResponse>) -> Unit) {
+        RetrofitInstance.apiList.getRequestAllCategory().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     result(Result.Success(response.body()!!))
@@ -44,8 +44,8 @@ class CartRepository() {
 
     }
 
-    suspend fun postRequestAddCart(id : Int , result: (Result<BasicResponse>) -> Unit) {
-        RetrofitInstance.apiList.postRequestAddCart(id).enqueue(object : Callback<BasicResponse> {
+    suspend fun getRequestProducts(id : Int , result: (Result<BasicResponse>) -> Unit) {
+        RetrofitInstance.apiList.getRequestProducts(id).enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     result(Result.Success(response.body()!!))

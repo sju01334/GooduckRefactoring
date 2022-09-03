@@ -1,4 +1,4 @@
-package com.gooduckrefactoring.repository.local
+package com.gooduckrefactoring.data
 
 import androidx.lifecycle.LiveData
 import com.gooduckrefactoring.api.HistoryDao

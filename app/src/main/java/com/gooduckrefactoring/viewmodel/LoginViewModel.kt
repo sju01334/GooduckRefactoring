@@ -9,8 +9,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.gooduckrefactoring.dto.BasicResponse
-import com.gooduckrefactoring.repository.remote.UserRepository
-import com.gooduckrefactoring.util.Result
+import com.gooduckrefactoring.data.user.UserRepository
+import com.gooduckrefactoring.data.Result
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause

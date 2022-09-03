@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.gooduckrefactoring.api.HistoryDatabase
 import com.gooduckrefactoring.dto.History
-import com.gooduckrefactoring.repository.local.HistoryRepository
+import com.gooduckrefactoring.data.HistoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

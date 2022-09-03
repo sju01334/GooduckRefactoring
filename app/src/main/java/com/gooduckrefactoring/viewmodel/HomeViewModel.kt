@@ -1,10 +1,9 @@
 package com.gooduckrefactoring.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.gooduckrefactoring.repository.remote.HomeRepository
-import com.gooduckrefactoring.repository.remote.ReviewRepository
-import com.gooduckrefactoring.util.Result
+import com.gooduckrefactoring.data.home.HomeRepository
+import com.gooduckrefactoring.data.ReviewRepository
+import com.gooduckrefactoring.data.Result
 import com.nepplus.gooduck.models.Banner
 import com.nepplus.gooduck.models.Product
 import com.nepplus.gooduck.models.Review

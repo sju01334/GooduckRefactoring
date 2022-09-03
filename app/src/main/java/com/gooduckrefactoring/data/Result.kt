@@ -1,4 +1,4 @@
-package com.gooduckrefactoring.util
+package com.gooduckrefactoring.data
 
 sealed class Result<out T : Any> {
 
