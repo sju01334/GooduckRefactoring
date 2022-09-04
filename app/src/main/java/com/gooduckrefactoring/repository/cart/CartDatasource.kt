@@ -32,7 +32,7 @@ class CartDatasource {
         })
     }
 
-    fun postRequestAddCart(id : Int , result: (Result<BasicResponse>) -> Unit){
+    fun postRequestAddCart(id : Int, result: (Result<BasicResponse>) -> Unit){
         RetrofitInstance.apiList.postRequestAddCart(id).enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {

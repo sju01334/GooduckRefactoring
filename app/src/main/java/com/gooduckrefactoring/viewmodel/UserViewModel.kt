@@ -7,6 +7,7 @@ import com.gooduckrefactoring.repository.user.UserRepository
 import com.gooduckrefactoring.repository.Result
 import com.nepplus.gooduck.models.UserData
 import com.nepplus.gooduck.utils.ContextUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserViewModel(
@@ -15,15 +16,13 @@ class UserViewModel(
 ) : AndroidViewModel(application) {
 
     private val _user = MutableLiveData<UserData>()
-
-    //livedata -> 변경이 불가능한 데이터
     val user: LiveData<UserData> get() = _user
 
 
     init {
         RetrofitInstance.token = ContextUtil.getLoginToken(application)
         viewModelScope.launch {
-            repository.getRequestMyInfo() {
+            repository.getRequestMyInfo {
                 if (it is Result.Success) {
                     _user.value = it.data
                 } else {

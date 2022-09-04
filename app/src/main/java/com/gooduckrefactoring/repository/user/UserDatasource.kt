@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class UserDatasource {
 
-    fun getRequestMyInfo(result: (Result<UserData>) -> Unit) {
+    suspend fun getRequestMyInfo(result: (Result<UserData>) -> Unit) {
         RetrofitInstance.apiList.getRequestMyInfo().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
@@ -25,7 +25,7 @@ class UserDatasource {
         })
     }
 
-    fun postRequestLogin(email: String, pw: String, result: (Result<BasicResponse>) -> Unit){
+    suspend fun postRequestLogin(email: String, pw: String, result: (Result<BasicResponse>) -> Unit){
         RetrofitInstance.apiList.postRequestLogin(email, pw).enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
@@ -47,7 +47,7 @@ class UserDatasource {
         })
     }
 
-    fun postRequestSocialLogin(provider: String, uid: String, nick: String, result: (Result<BasicResponse>) -> Unit){
+    suspend fun postRequestSocialLogin(provider: String, uid: String, nick: String, result: (Result<BasicResponse>) -> Unit){
         RetrofitInstance.apiList.postRequestSocialLogin(provider, uid, nick).enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {

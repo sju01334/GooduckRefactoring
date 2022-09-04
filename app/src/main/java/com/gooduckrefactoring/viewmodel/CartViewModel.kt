@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.gooduckrefactoring.repository.cart.CartRepository
 import com.gooduckrefactoring.repository.Result
 import com.nepplus.gooduck.models.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CartViewModel(
@@ -23,7 +24,7 @@ class CartViewModel(
 
 
     fun getAllCartItems() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.getRequestMyCartList {
                 if (it is Result.Success) {
                     list.clear()

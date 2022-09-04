@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class CategoryDatasouce {
 
-    fun getRequestAllCategory(result: (Result<BasicResponse>) -> Unit){
+    suspend fun getRequestAllCategory(result: (Result<BasicResponse>) -> Unit){
         RetrofitInstance.apiList.getRequestAllCategory().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
@@ -32,7 +32,7 @@ class CategoryDatasouce {
         })
     }
 
-    fun getRequestProducts(id : Int , result: (Result<BasicResponse>) -> Unit){
+    fun getRequestProducts(id : Int, result: (Result<BasicResponse>) -> Unit){
         RetrofitInstance.apiList.getRequestProducts(id).enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {

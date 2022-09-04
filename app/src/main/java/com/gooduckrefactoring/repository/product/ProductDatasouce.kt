@@ -53,7 +53,7 @@ class ProductDatasouce {
         })
     }
 
-    fun getRequestProducts(id : Int , result: (Result<BasicResponse>) -> Unit){
+    fun getRequestProducts(id : Int, result: (Result<BasicResponse>) -> Unit){
         RetrofitInstance.apiList.getRequestProducts(id).enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {

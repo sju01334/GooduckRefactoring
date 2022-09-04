@@ -8,6 +8,7 @@ import com.gooduckrefactoring.repository.category.CategoryRepository
 import com.gooduckrefactoring.repository.Result
 import com.nepplus.gooduck.models.Category
 import com.nepplus.gooduck.models.Product
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CategoryViewModel(
