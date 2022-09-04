@@ -2,9 +2,9 @@ package com.gooduckrefactoring.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.gooduckrefactoring.api.RetrofitInstance
-import com.gooduckrefactoring.data.user.UserRepository
-import com.gooduckrefactoring.data.Result
+import com.gooduckrefactoring.network.RetrofitInstance
+import com.gooduckrefactoring.repository.user.UserRepository
+import com.gooduckrefactoring.repository.Result
 import com.nepplus.gooduck.models.UserData
 import com.nepplus.gooduck.utils.ContextUtil
 import kotlinx.coroutines.launch

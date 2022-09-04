@@ -1,7 +1,7 @@
-package com.gooduckrefactoring.data.history
+package com.gooduckrefactoring.repository.history
 
 import androidx.lifecycle.LiveData
-import com.gooduckrefactoring.api.HistoryDao
+import com.gooduckrefactoring.network.HistoryDao
 import com.gooduckrefactoring.dto.History
 
 class HistoryRepository(private val historyDao: HistoryDao) {

@@ -1,6 +1,6 @@
-package com.gooduckrefactoring.data.review
+package com.gooduckrefactoring.repository.review
 
-import com.gooduckrefactoring.data.Result
+import com.gooduckrefactoring.repository.Result
 import com.gooduckrefactoring.dto.BasicResponse
 
 class ReviewRepository(private val reviewDatasource : ReviewDatasource) {

@@ -1,14 +1,8 @@
-package com.gooduckrefactoring.data.user
+package com.gooduckrefactoring.repository.user
 
-import android.util.Log
-import com.gooduckrefactoring.api.RetrofitInstance
-import com.gooduckrefactoring.data.Result
+import com.gooduckrefactoring.repository.Result
 import com.gooduckrefactoring.dto.BasicResponse
 import com.nepplus.gooduck.models.UserData
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class UserRepository(private val userDatasource : UserDatasource) {
 

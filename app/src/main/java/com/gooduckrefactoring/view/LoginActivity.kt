@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gooduckrefactoring.R
-import com.gooduckrefactoring.api.RetrofitInstance
+import com.gooduckrefactoring.network.RetrofitInstance
 import com.gooduckrefactoring.databinding.ActivityLoginBinding
 import com.gooduckrefactoring.viewmodel.LoginViewModel
 import com.gooduckrefactoring.viewmodel.LoginViewModelFactory

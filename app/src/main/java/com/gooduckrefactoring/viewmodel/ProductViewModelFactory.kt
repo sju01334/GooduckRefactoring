@@ -2,8 +2,8 @@ package com.gooduckrefactoring.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gooduckrefactoring.data.product.ProductDatasouce
-import com.gooduckrefactoring.data.product.ProductRepository
+import com.gooduckrefactoring.repository.product.ProductDatasouce
+import com.gooduckrefactoring.repository.product.ProductRepository
 
 class ProductViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

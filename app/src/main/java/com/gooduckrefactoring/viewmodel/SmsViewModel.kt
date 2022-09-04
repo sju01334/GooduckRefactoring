@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gooduckrefactoring.dto.BasicResponse
-import com.gooduckrefactoring.data.user.UserRepository
 import java.util.regex.Pattern
 
 

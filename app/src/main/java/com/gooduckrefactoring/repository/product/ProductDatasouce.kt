@@ -1,8 +1,8 @@
-package com.gooduckrefactoring.data.product
+package com.gooduckrefactoring.repository.product
 
 import android.util.Log
-import com.gooduckrefactoring.api.RetrofitInstance
-import com.gooduckrefactoring.data.Result
+import com.gooduckrefactoring.network.RetrofitInstance
+import com.gooduckrefactoring.repository.Result
 import com.gooduckrefactoring.dto.BasicResponse
 import org.json.JSONObject
 import retrofit2.Call

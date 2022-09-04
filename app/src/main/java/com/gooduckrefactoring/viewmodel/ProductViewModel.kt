@@ -1,12 +1,10 @@
 package com.gooduckrefactoring.viewmodel
 
 import androidx.lifecycle.*
-import com.gooduckrefactoring.data.product.ProductRepository
-import com.gooduckrefactoring.data.review.ReviewRepository
-import com.gooduckrefactoring.data.Result
+import com.gooduckrefactoring.repository.product.ProductRepository
+import com.gooduckrefactoring.repository.Result
 import com.nepplus.gooduck.models.Banner
 import com.nepplus.gooduck.models.Product
-import com.nepplus.gooduck.models.Review
 import kotlinx.coroutines.launch
 
 class ProductViewModel(
@@ -76,7 +74,7 @@ class ProductViewModel(
             repository.getRequestAllProduct {
                 if (it is Result.Success) {
                     _productItemListAll.value  = it.data.data!!.products
-                    val productList = it.data.data!!.products.shuffled()
+                    val productList = it.data.data.products.shuffled()
                     _productItemList.value = productList.take(5)
                 }
             }

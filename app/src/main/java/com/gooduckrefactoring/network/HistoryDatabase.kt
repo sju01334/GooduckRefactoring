@@ -1,4 +1,4 @@
-package com.gooduckrefactoring.api
+package com.gooduckrefactoring.network
 
 import android.content.Context
 import androidx.room.Database

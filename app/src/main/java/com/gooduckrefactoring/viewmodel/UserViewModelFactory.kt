@@ -3,8 +3,8 @@ package com.gooduckrefactoring.viewmodel
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gooduckrefactoring.data.user.UserDatasource
-import com.gooduckrefactoring.data.user.UserRepository
+import com.gooduckrefactoring.repository.user.UserDatasource
+import com.gooduckrefactoring.repository.user.UserRepository
 
 class UserViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

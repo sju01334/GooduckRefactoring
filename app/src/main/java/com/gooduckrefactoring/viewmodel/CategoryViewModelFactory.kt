@@ -2,8 +2,8 @@ package com.gooduckrefactoring.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gooduckrefactoring.data.category.CategoryDatasouce
-import com.gooduckrefactoring.data.category.CategoryRepository
+import com.gooduckrefactoring.repository.category.CategoryDatasouce
+import com.gooduckrefactoring.repository.category.CategoryRepository
 
 class CategoryViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

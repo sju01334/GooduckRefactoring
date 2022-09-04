@@ -2,8 +2,8 @@ package com.gooduckrefactoring.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gooduckrefactoring.data.review.ReviewDatasource
-import com.gooduckrefactoring.data.review.ReviewRepository
+import com.gooduckrefactoring.repository.review.ReviewDatasource
+import com.gooduckrefactoring.repository.review.ReviewRepository
 
 class ReviewViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

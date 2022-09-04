@@ -1,10 +1,9 @@
 package com.gooduckrefactoring.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gooduckrefactoring.data.cart.CartDatasource
-import com.gooduckrefactoring.data.cart.CartRepository
+import com.gooduckrefactoring.repository.cart.CartDatasource
+import com.gooduckrefactoring.repository.cart.CartRepository
 
 class CartViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

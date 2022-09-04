@@ -1,11 +1,8 @@
 package com.gooduckrefactoring.viewmodel
 
 import androidx.lifecycle.*
-import com.gooduckrefactoring.data.product.ProductRepository
-import com.gooduckrefactoring.data.review.ReviewRepository
-import com.gooduckrefactoring.data.Result
-import com.nepplus.gooduck.models.Banner
-import com.nepplus.gooduck.models.Product
+import com.gooduckrefactoring.repository.review.ReviewRepository
+import com.gooduckrefactoring.repository.Result
 import com.nepplus.gooduck.models.Review
 import kotlinx.coroutines.launch
 

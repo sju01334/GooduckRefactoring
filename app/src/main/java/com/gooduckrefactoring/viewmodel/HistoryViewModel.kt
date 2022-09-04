@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.gooduckrefactoring.api.HistoryDatabase
+import com.gooduckrefactoring.network.HistoryDatabase
 import com.gooduckrefactoring.dto.History
-import com.gooduckrefactoring.data.history.HistoryRepository
+import com.gooduckrefactoring.repository.history.HistoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.gooduckrefactoring.api
+package com.gooduckrefactoring.network
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

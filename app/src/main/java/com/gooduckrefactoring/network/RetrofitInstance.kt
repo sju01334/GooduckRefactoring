@@ -1,7 +1,6 @@
-package com.gooduckrefactoring.api
+package com.gooduckrefactoring.network
 
 import com.nepplus.gooduck.api.APIList
-import com.nepplus.gooduck.utils.ContextUtil
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gooduckrefactoring.data.category.CategoryRepository
-import com.gooduckrefactoring.data.Result
+import com.gooduckrefactoring.repository.category.CategoryRepository
+import com.gooduckrefactoring.repository.Result
 import com.nepplus.gooduck.models.Category
 import com.nepplus.gooduck.models.Product
 import kotlinx.coroutines.launch
