@@ -28,10 +28,6 @@ class SmsViewModel(application: Application) : AndroidViewModel(application) {
     val response: LiveData<BasicResponse> get() = _response
     val errorMessage: LiveData<String> get() = _errorMessage
 
-    private val repository by lazy {
-        UserRepository.getInstance()
-    }
-
     init {
         _isPhoneError.value = false
         _isAuthError.value = false
@@ -40,7 +36,7 @@ class SmsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun isPhoneValid(editable: Editable) {
         val regexStr = "^[0-9]$"
-        _isPhoneError.value = !Pattern.compile(regexStr).matcher(editable).matches();
+        _isPhoneError.value = !Pattern.compile(regexStr).matcher(editable).matches()
         Log.d("폰넘버",  _isPhoneError.value.toString())
     }
 

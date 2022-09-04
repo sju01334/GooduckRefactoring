@@ -19,7 +19,7 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
 
     override val layoutId: Int = R.layout.activity_login
     private val loginViewModel by lazy {
-        ViewModelProvider(this, LoginViewModelFactory(application)).get(LoginViewModel::class.java)
+        ViewModelProvider(this, LoginViewModelFactory(application))[LoginViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,12 +63,12 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
             finish()
         }
 
-        loginViewModel.errorMessage.observe(this, Observer {
+        loginViewModel.errorMessage.observe(this) {
             it?.let {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
 
-        })
+        }
     }
 
     override fun initAppbar() {

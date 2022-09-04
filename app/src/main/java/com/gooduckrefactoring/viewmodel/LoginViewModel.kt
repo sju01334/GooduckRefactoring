@@ -24,7 +24,10 @@ import com.nepplus.gooduck.utils.ContextUtil
 import kotlinx.coroutines.launch
 
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class LoginViewModel(
+    application: Application,
+    private val repository : UserRepository
+) : AndroidViewModel(application) {
 //    private val _navigateToDetails = MutableLiveData<Event<Boolean>>()
 //    val navigateToDetails : LiveData<Event<Boolean>>
 //        get() = _navigateToDetails
@@ -40,10 +43,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val isEmailError: LiveData<Boolean> get() = _isEmailError
     val isPWError: LiveData<Boolean> get() = _isPWError
     val response: LiveData<BasicResponse> get() = _response
-
-    private val repository by lazy {
-        UserRepository.getInstance()
-    }
 
     init {
         _isEmailError.value = false
@@ -63,7 +62,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
         if (_isEmailError.value == false && _isPWError.value == false) {
             viewModelScope.launch {
-                repository!!.postRequestLogin(email = email, pw = pw) {
+                repository.postRequestLogin(email = email, pw = pw) {
                     if (it is Result.Success) {
                         _response.value = it.data
                         ContextUtil.setLoginToken(getApplication(), it.data.data!!.token)
@@ -181,7 +180,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     fun socialLoginFromServer(provider: String, uid: String, nick: String) {
         viewModelScope.launch {
-            repository!!.postRequestSocialLogin(provider, uid, nick) {
+            repository.postRequestSocialLogin(provider, uid, nick) {
                 if (it is Result.Success) {
                     _response.value = it.data
 //                        Log.d("로그인정보", it.data.data.toString())

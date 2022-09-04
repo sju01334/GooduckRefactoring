@@ -9,15 +9,13 @@ import com.gooduckrefactoring.data.Result
 import com.nepplus.gooduck.models.*
 import kotlinx.coroutines.launch
 
-class CartViewModel() : ViewModel() {
+class CartViewModel(
+    private val repository: CartRepository
+) : ViewModel() {
+
     private val list = mutableListOf<Cart>()
     private val _cartItemList: MutableLiveData<List<Cart>> = MutableLiveData()
     val cartItemList: LiveData<List<Cart>> get() = _cartItemList
-
-
-    private val repository by lazy {
-        CartRepository.getInstance()
-    }
 
     init {
         getAllCartItems()
@@ -26,7 +24,7 @@ class CartViewModel() : ViewModel() {
 
     fun getAllCartItems() {
         viewModelScope.launch {
-            repository!!.getRequestMyCartList {
+            repository.getRequestMyCartList {
                 if (it is Result.Success) {
                     list.clear()
                     list.addAll(it.data.data!!.carts)
@@ -39,7 +37,7 @@ class CartViewModel() : ViewModel() {
 
     fun addToCartItem(id: Int) {
         viewModelScope.launch {
-            repository!!.postRequestAddCart(id) {
+            repository.postRequestAddCart(id) {
                 if (it is Result.Success) {
                     list.add(it.data.data!!.cart)
                     _cartItemList.postValue(list)

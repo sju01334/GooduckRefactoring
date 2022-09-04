@@ -13,9 +13,8 @@ import com.gooduckrefactoring.adapter.ProductHorizonRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentTodayBinding
 import com.gooduckrefactoring.view.fragment.BaseFragment
 import com.gooduckrefactoring.viewmodel.CartViewModel
-import com.gooduckrefactoring.viewmodel.CartViewModelFactory
-import com.gooduckrefactoring.viewmodel.HomeViewModel
-import com.gooduckrefactoring.viewmodel.HomeViewModelFactory
+import com.gooduckrefactoring.viewmodel.ProductViewModel
+import com.gooduckrefactoring.viewmodel.ProductViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
@@ -26,7 +25,7 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
     private lateinit var productAdapter: ProductHorizonRecyclerviewAdapter
 
     private val HomeViewModel by lazy {
-        ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
+        ViewModelProvider(this, ProductViewModelFactory())[ProductViewModel::class.java]
     }
 
     /*before (안되는거)

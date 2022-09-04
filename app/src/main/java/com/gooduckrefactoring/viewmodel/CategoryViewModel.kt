@@ -10,7 +10,9 @@ import com.nepplus.gooduck.models.Category
 import com.nepplus.gooduck.models.Product
 import kotlinx.coroutines.launch
 
-class CategoryViewModel() : ViewModel() {
+class CategoryViewModel(
+    private val repository: CategoryRepository
+) : ViewModel() {
 
     private val _categoryItemList: MutableLiveData<List<Category>> = MutableLiveData()
     val categoryItemList: LiveData<List<Category>> get() = _categoryItemList
@@ -18,9 +20,6 @@ class CategoryViewModel() : ViewModel() {
     private val _selectedCategoryItemList: MutableLiveData<List<Product>> = MutableLiveData()
     val selectedCategoryItemList: LiveData<List<Product>> get() = _selectedCategoryItemList
 
-    private val repository by lazy {
-        CategoryRepository.getInstance()
-    }
 
     init {
         getCategoryItems()
@@ -29,7 +28,7 @@ class CategoryViewModel() : ViewModel() {
 
     fun getCategoryItems() {
         viewModelScope.launch {
-            repository!!.getRequestAllCategory{
+            repository.getRequestAllCategory{
                 if (it is Result.Success) {
                     _categoryItemList.value = it.data.data!!.categories
                 }
@@ -40,7 +39,7 @@ class CategoryViewModel() : ViewModel() {
 
     fun getSelectedCategoryItems(id : Int) {
         viewModelScope.launch {
-            repository!!.getRequestProducts(id){
+            repository.getRequestProducts(id){
                 if (it is Result.Success) {
                     _selectedCategoryItemList.value = it.data.data!!.products
                 }

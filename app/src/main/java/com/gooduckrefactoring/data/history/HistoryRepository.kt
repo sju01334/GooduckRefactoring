@@ -1,4 +1,4 @@
-package com.gooduckrefactoring.data
+package com.gooduckrefactoring.data.history
 
 import androidx.lifecycle.LiveData
 import com.gooduckrefactoring.api.HistoryDao

@@ -6,6 +6,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gooduckrefactoring.R
@@ -15,9 +17,10 @@ import com.gooduckrefactoring.viewmodel.UserViewModelFactory
 import com.kakao.sdk.common.util.Utility
 import com.nepplus.gooduck.utils.GlobalData
 
-class SplashActivity : BaseActivity<ActivitySplashBinding>() {
+class SplashActivity : AppCompatActivity() {
 
-    override val layoutId: Int = R.layout.activity_splash
+    lateinit var binding : ActivitySplashBinding
+    val layoutId: Int = R.layout.activity_splash
 
     var isTokenOk = false
 
@@ -27,25 +30,25 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding = DataBindingUtil.setContentView(this, layoutId)
         setupEvents()
         setValues()
     }
 
-    override fun setupEvents() {
+    fun setupEvents() {
 
-        userViewModel.user.observe(this, Observer { user ->
-            if(user != null){
+        userViewModel.user.observe(this) { user ->
+            if (user != null) {
                 isTokenOk = true
                 GlobalData.loginUser = user
             }
-        })
+        }
 
     }
 
-    override fun setValues() {
+    fun setValues() {
 
-        var myHandler = Handler(Looper.getMainLooper())
+        val myHandler = Handler(Looper.getMainLooper())
 
         myHandler.postDelayed({
 
@@ -53,11 +56,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
             val myIntent : Intent
             if(isTokenOk){
-                Toast.makeText(mContext, "${GlobalData.loginUser!!.nickname}님 환영합니다", Toast.LENGTH_SHORT).show()
-                myIntent = Intent(mContext, MainActivity::class.java)
+                Toast.makeText(this, "${GlobalData.loginUser!!.nickname}님 환영합니다", Toast.LENGTH_SHORT).show()
+                myIntent = Intent(this, MainActivity::class.java)
 
             }else{
-                myIntent = Intent(mContext, LoginActivity::class.java)
+                myIntent = Intent(this, LoginActivity::class.java)
             }
             startActivity(myIntent)
             finish()
@@ -67,12 +70,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     fun getKeyhash(){
-        var keyHash = Utility.getKeyHash(mContext)
+        val keyHash = Utility.getKeyHash(this)
 
         Log.d("kakao_keyHash", keyHash)
     }
 
-    override fun initAppbar() {
-
-    }
 }

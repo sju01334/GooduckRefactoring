@@ -1,4 +1,4 @@
-package com.gooduckrefactoring.data.home
+package com.gooduckrefactoring.data.category
 
 import android.util.Log
 import com.gooduckrefactoring.api.RetrofitInstance
@@ -9,43 +9,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeRepository() {
+class CategoryDatasouce {
 
-    companion object {
-        private var instance: HomeRepository? = null
-
-        fun getInstance(): HomeRepository? { // singleton pattern
-            if (instance == null) {
-                instance = HomeRepository()
-            }
-            return instance
-        }
-    }
-
-    suspend fun getRequestBanner(result: (Result<BasicResponse>) -> Unit) {
-        RetrofitInstance.apiList.getRequestBanner().enqueue(object : Callback<BasicResponse> {
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if (response.isSuccessful) {
-                    result(Result.Success(response.body()!!))
-//                    Log.d("login_code",  response.body()!!.toString())
-                } else {
-                    val errorBodyStr = response.errorBody()!!.string()
-                    val jsonObj = JSONObject(errorBodyStr)
-                    val message = jsonObj.getString("message")
-                    val code = jsonObj.getString("code")
-//                    result(Result.Error(message))
-                    Log.d("login_code", code + message)
-                }
-            }
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                t.message?.let { Log.d("########", it) }
-//                result(Result.Error(it))
-            }
-        })
-
-    }
-    suspend fun getRequestAllProduct(result: (Result<BasicResponse>) -> Unit) {
-        RetrofitInstance.apiList.getRequestAllProduct().enqueue(object : Callback<BasicResponse> {
+    fun getRequestAllCategory(result: (Result<BasicResponse>) -> Unit){
+        RetrofitInstance.apiList.getRequestAllCategory().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     result(Result.Success(response.body()!!))
@@ -63,10 +30,9 @@ class HomeRepository() {
                 t.message?.let { Log.d("########", it) }
             }
         })
-
     }
 
-    suspend fun getRequestProducts(id : Int , result: (Result<BasicResponse>) -> Unit) {
+    fun getRequestProducts(id : Int , result: (Result<BasicResponse>) -> Unit){
         RetrofitInstance.apiList.getRequestProducts(id).enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
@@ -85,14 +51,5 @@ class HomeRepository() {
                 t.message?.let { Log.d("########", it) }
             }
         })
-
     }
-
-
-
-
-
-
 }
-
-

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(
     application: Application,
-    repository : UserRepository
+    private val repository : UserRepository
 ) : AndroidViewModel(application) {
 
     private val _user = MutableLiveData<UserData>()
@@ -20,11 +20,10 @@ class UserViewModel(
     val user: LiveData<UserData> get() = _user
 
 
-
     init {
         RetrofitInstance.token = ContextUtil.getLoginToken(application)
         viewModelScope.launch {
-            repository!!.getRequestMyInfo() {
+            repository.getRequestMyInfo() {
                 if (it is Result.Success) {
                     _user.value = it.data
                 } else {
