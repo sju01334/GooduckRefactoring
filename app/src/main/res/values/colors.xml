@@ -23,6 +23,7 @@
 
     <color name="kakaoColor">#FFE812</color>
     <color name="naverColor">#56BC3D</color>
+    <color name="googleColor">#4285F4</color>
 
 
 </resources>

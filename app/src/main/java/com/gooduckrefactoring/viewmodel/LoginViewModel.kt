@@ -195,6 +195,10 @@ class LoginViewModel(
 //    }
 
     }
+
+    fun googleLogin() {
+
+    }
 }
 
 
