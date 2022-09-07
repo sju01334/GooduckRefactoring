@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/signup_step_1"
+    android:id="@+id/navigation_main">
+
+    <fragment
+        android:id="@+id/signup_step_1"
+        android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepOneFragment"
+        tools:layout="@layout/fragment_step_one">
+
+
+        <action
+            android:id="@+id/action_signup_step_1_to_signup_step_2"
+            app:destination="@id/signup_step_2" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup_step_2"
+        android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepTwoFragment"
+        tools:layout="@layout/fragment_step_two">
+
+
+    </fragment>
+
+
+</navigation>
