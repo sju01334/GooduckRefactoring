@@ -11,7 +11,7 @@
     <string name="naverClientSecret">QCj5mMKxFP</string>
     <string name="naverClientName">네이버아이디로 로그인</string>
 
-    <string name="server_client_id">143317875764-f37u43blck7ckaaplmj6nbdao4qvo8al.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">143317875764-lfobc43cmtasgrejj9pv7p08o6cfhd3l.apps.googleusercontent.com</string>
 
 
 </resources>

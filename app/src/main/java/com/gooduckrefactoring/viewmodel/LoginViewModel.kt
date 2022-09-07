@@ -16,8 +16,10 @@ import com.gooduckrefactoring.dto.BasicResponse
 import com.gooduckrefactoring.repository.user.UserRepository
 import com.gooduckrefactoring.repository.Result
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -201,6 +203,25 @@ class LoginViewModel(
         }
 
         NaverIdLoginSDK.authenticate(getApplication(), oauthLoginCallback)
+    }
+
+    fun googleLogin(task: Task<GoogleSignInAccount>) {
+        try {
+            task.getResult(ApiException::class.java)?.let { account ->
+
+                val tokenId = account.idToken
+                val family = account.familyName
+                val nick = account.displayName
+
+                Log.d("뭐가 들어왔니", family+ nick)
+
+                (nick ?: family)?.let { socialLoginFromServer("google", tokenId.toString(), it) }
+
+            } ?: throw Exception()
+        } catch (e: Exception) {
+            Log.d("google_login_failed", e.message.toString())
+            e.printStackTrace()
+        }
     }
 
 
