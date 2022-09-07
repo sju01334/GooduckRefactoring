@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.gooduckrefactoring.R
@@ -41,7 +42,7 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
         NaverIdLoginSDK.initialize(
             this,
             getString(R.string.naver_client_id),
-            getString(R.string.naverClientSecret) ,
+            getString(R.string.naverClientSecret),
             getString(R.string.naverClientName)
         )
 
@@ -54,7 +55,7 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
 
     override fun setupEvents() {
         binding.loginBtn.setOnClickListener {
-            loginViewModel.normalLogin( binding.EmailEdt.text.toString(), binding.PWEdt.text.toString())
+            loginViewModel.normalLogin(binding.EmailEdt.text.toString(), binding.PWEdt.text.toString())
         }
 
         binding.kakaoLoginBtn.setOnClickListener {
@@ -76,7 +77,7 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
             it.data?.let { user -> ContextUtil.setLoginToken(this, user.token) }
             RetrofitInstance.token = ContextUtil.getLoginToken(this)
             startActivity(Intent(this, MainActivity::class.java))
-            Toast.makeText(this, it.message , Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
             finish()
         }
 
@@ -89,51 +90,48 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
     }
 
     override fun initAppbar() {
-        backBtn.isVisible= false
+        backBtn.isVisible = false
         bagBtn.isVisible = false
     }
 
-    fun googleLogin(){
+    fun googleLogin() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.server_client_id))
+                .requestEmail()
+                .build()
 
-        binding.run {
-            googleLoginBtn.setOnClickListener {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.server_client_id))
-                        .requestEmail()
-                        .build()
+            val googleSignInClient = GoogleSignIn.getClient(this@LoginActivity, gso)
+            val signInIntent: Intent = googleSignInClient.signInIntent
+            launcher.launch(signInIntent)
+        }
+    }
 
-                    val googleSignInClient = GoogleSignIn.getClient(this@LoginActivity, gso)
-                    val signInIntent: Intent = googleSignInClient.signInIntent
-                    launcher.launch(signInIntent)
+
+    private fun initGoogleLauncher() {
+        launcher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                try {
+                    task.getResult(ApiException::class.java)?.let { account ->
+
+                        val tokenId = account.idToken
+                        val email = account.email
+                        val photoUrl = account.photoUrl
+
+                        Log.d("로그인액티비티", tokenId.toString() + email + photoUrl)
+
+                    } ?: throw Exception()
+                } catch (e: Exception) {
+                    Log.d("로긴왜안대", e.message.toString())
+                    e.printStackTrace()
                 }
             }
         }
-
     }
 
-    fun initGoogleLauncher(){
-        launcher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { result ->
-                if(result.resultCode == RESULT_OK){
-                    val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-                    try {
-                        task.getResult(ApiException::class.java)?.let { account ->
 
-                            val tokenId = account.idToken
-                            val email = account.email
-                            val photoUrl = account.photoUrl
-
-                            Log.d("로그인액티비티", tokenId.toString() + email + photoUrl)
-
-                        } ?: throw Exception()
-                    }   catch (e: Exception) {
-                        Log.d("로긴왜안대", e.message.toString())
-                        e.printStackTrace()
-                    }
-                }
-        }
-    }
 
 
 }

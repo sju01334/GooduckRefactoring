@@ -10,9 +10,8 @@
     <string name="naver_client_id">xI2SBM5QZxCL8W6vlb0_</string>
     <string name="naverClientSecret">QCj5mMKxFP</string>
     <string name="naverClientName">네이버아이디로 로그인</string>
-    <string name="title_activity_products">ProductsActivity</string>
 
-    <string name="server_client_id">201294786739-27df6c2pfc851d4vu9ddhmshk2umif2k.apps.googleusercontent.com</string>
+    <string name="server_client_id">143317875764-f37u43blck7ckaaplmj6nbdao4qvo8al.apps.googleusercontent.com</string>
 
 
 </resources>

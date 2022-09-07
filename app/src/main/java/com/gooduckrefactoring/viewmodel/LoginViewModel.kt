@@ -1,9 +1,13 @@
 package com.gooduckrefactoring.viewmodel
 
 import android.app.Application
+import android.content.Intent
 import android.text.Editable
 import android.util.Log
 import android.util.Patterns
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +15,9 @@ import androidx.lifecycle.viewModelScope
 import com.gooduckrefactoring.dto.BasicResponse
 import com.gooduckrefactoring.repository.user.UserRepository
 import com.gooduckrefactoring.repository.Result
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -21,6 +28,8 @@ import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.nepplus.gooduck.utils.ContextUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -31,7 +40,7 @@ class LoginViewModel(
 //    private val _navigateToDetails = MutableLiveData<Event<Boolean>>()
 //    val navigateToDetails : LiveData<Event<Boolean>>
 //        get() = _navigateToDetails
-
+    private lateinit var launcher: ActivityResultLauncher<Intent>
 
     private var _isEmailError = MutableLiveData<Boolean>()
     private var _isPWError = MutableLiveData<Boolean>()
@@ -76,6 +85,24 @@ class LoginViewModel(
             _errorMessage.value = "알맞는 정보를 입력해주세요"
         }
 
+
+    }
+
+    fun socialLoginFromServer(provider: String, uid: String, nick: String) {
+        viewModelScope.launch {
+            repository.postRequestSocialLogin(provider, uid, nick) {
+                if (it is Result.Success) {
+                    _response.value = it.data
+//                        Log.d("로그인정보", it.data.data.toString())
+                } else if (it is Result.Error) {
+                    _errorMessage.value = it.exception
+                }
+            }
+        }
+//    fun userClicksOnButton(itemId: Boolean, email : String, pw : String) {
+////        normalLogin(email, pw)
+//        _navigateToDetails.value = Event(itemId)
+//    }
 
     }
 
@@ -129,7 +156,6 @@ class LoginViewModel(
         }
     }
 
-
     fun naverLogin() {
 
         var naverToken: String? = ""
@@ -178,27 +204,7 @@ class LoginViewModel(
     }
 
 
-    fun socialLoginFromServer(provider: String, uid: String, nick: String) {
-        viewModelScope.launch {
-            repository.postRequestSocialLogin(provider, uid, nick) {
-                if (it is Result.Success) {
-                    _response.value = it.data
-//                        Log.d("로그인정보", it.data.data.toString())
-                } else if (it is Result.Error) {
-                    _errorMessage.value = it.exception
-                }
-            }
-        }
-//    fun userClicksOnButton(itemId: Boolean, email : String, pw : String) {
-////        normalLogin(email, pw)
-//        _navigateToDetails.value = Event(itemId)
-//    }
 
-    }
-
-    fun googleLogin() {
-
-    }
 }
 
 
