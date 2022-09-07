@@ -17,13 +17,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.nepplus.gooduck.utils.ContextUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
-
 
     override val layoutId: Int = R.layout.activity_login
     private lateinit var launcher: ActivityResultLauncher<Intent>
@@ -64,7 +65,6 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
         }
 
         binding.googleLoginBtn.setOnClickListener {
-//            loginViewModel.googleLogin()
             googleLogin()
         }
 
@@ -90,6 +90,7 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
     override fun initAppbar() {
         backBtn.isVisible = false
         bagBtn.isVisible = false
+        cartCnt.isVisible = false
     }
 
     fun googleLogin() {
@@ -105,7 +106,6 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
         }
     }
 
-
     private fun initGoogleLauncher() {
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
@@ -115,6 +115,11 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
             }
         }
     }
+
+
+
+
+
 
 
 

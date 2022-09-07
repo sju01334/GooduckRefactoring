@@ -78,6 +78,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         bagBtn.isVisible = true
         titleTxt.isVisible = false
         backBtn.isVisible = false
+        cartCnt.isVisible = true
     }
 
     private fun changeAppbar(nav: Int) {

@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.gooduckrefactoring.view.fragment.CategoryFragment
 import com.kurly.kurlyapplication.ui.fragment.HomeFragment
-import com.kurly.kurlyapplication.ui.fragment.MyGooduckFragment
+import com.gooduckrefactoring.view.fragment.MyGooduckFragment
 import com.gooduckrefactoring.view.fragment.SearchFragment
 
 class MainViewPagerAdapter(fa : FragmentActivity) : FragmentStateAdapter(fa) {
