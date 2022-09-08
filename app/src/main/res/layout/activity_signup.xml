@@ -18,12 +18,12 @@
 
             <ImageView
                 android:id="@+id/backBtn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_gravity="start"
                 android:padding="10dp"
-                android:src="@drawable/ic_arrow"
-                app:tint="@color/darkGray" />
+                android:src="@drawable/ic_close"
+                app:tint="@color/mediumGray" />
 
             <TextView
                 android:layout_width="wrap_content"

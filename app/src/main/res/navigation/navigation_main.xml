@@ -10,24 +10,19 @@
         android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepOneFragment"
         tools:layout="@layout/fragment_step_one">
 
-
         <action
             android:id="@+id/action_signup_step_1_to_signup_step_2"
             app:destination="@id/signup_step_2" />
 
     </fragment>
-
     <fragment
         android:id="@+id/signup_step_2"
         android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepTwoFragment"
         tools:layout="@layout/fragment_step_two">
 
         <argument
-            android:name="args"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
-
+            android:name="email"
+            app:argType="string" />
 
     </fragment>
 

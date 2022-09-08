@@ -2,6 +2,7 @@ package com.gooduckrefactoring.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -27,10 +28,16 @@ class SignupActivity() :BaseActivity<ActivitySignupBinding>() {
         navigationController.addOnDestinationChangedListener{ _ , destination, _ ->
             when(destination.id){
                 R.id.signup_step_1 ->{
-
+                    with(binding){
+                        currentStep.text = "1"
+                        backBtn.isVisible = true
+                    }
                 }
                 R.id.signup_step_2 ->{
-
+                    with(binding){
+                        currentStep.text = "2"
+                        backBtn.isVisible = false
+                    }
                 }
             }
 

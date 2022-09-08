@@ -123,6 +123,7 @@ dependencies {
     //구글 로그인
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
+    //navigation
     def nav_version = "2.5.1"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
