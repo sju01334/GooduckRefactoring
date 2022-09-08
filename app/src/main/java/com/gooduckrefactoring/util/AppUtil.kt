@@ -4,7 +4,11 @@ import android.content.Context
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 
 class AppUtil {
@@ -25,6 +29,12 @@ class AppUtil {
             inputMethodManager.hideSoftInputFromWindow(editText.windowToken, 0)
         }
 
+        fun showSoftInput(context: Context, editText: EditText) {
+            val inputMethodManager =
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.showSoftInput(editText, 0)
+        }
+
         //        layout Margin Dp 단위 변경
         fun View.margin(left: Float? = null, top: Float? = null, right: Float? = null, bottom: Float? = null) {
             layoutParams<ViewGroup.MarginLayoutParams> {
@@ -41,6 +51,14 @@ class AppUtil {
 
         fun View.dpToPx(dp: Float): Int = context.dpToPx(dp)
         fun Context.dpToPx(dp: Float): Int = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics).toInt()
+
+        fun animationButton(btn : Button){
+            val animation = TranslateAnimation(btn.width.toFloat(), 0f, 0f, 0f)
+            animation.duration = 1000
+            animation.fillAfter = true
+            btn.animation = animation
+        }
+
 
     }
 }

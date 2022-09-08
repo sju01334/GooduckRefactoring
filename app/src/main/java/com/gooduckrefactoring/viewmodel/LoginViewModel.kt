@@ -43,27 +43,54 @@ class LoginViewModel(
 //    private val _navigateToDetails = MutableLiveData<Event<Boolean>>()
 //    val navigateToDetails : LiveData<Event<Boolean>>
 //        get() = _navigateToDetails
+
     private lateinit var launcher: ActivityResultLauncher<Intent>
 
     private var _isEmailError = MutableLiveData<Boolean>()
+    val isEmailError: LiveData<Boolean> get() = _isEmailError
+
+    private var _isEmailDupli = MutableLiveData<Boolean>()
+    val isEmailDupli: LiveData<Boolean> get() = _isEmailDupli
+
     private var _isPWError = MutableLiveData<Boolean>()
+    val isPWError: LiveData<Boolean> get() = _isPWError
+
+    private var _isNickError = MutableLiveData<Boolean>()
+    val isNickError: LiveData<Boolean> get() = _isNickError
+
     private var _response = MutableLiveData<BasicResponse>()
+    val response: LiveData<BasicResponse> get() = _response
+
     private var _errorMessage = MutableLiveData<String?>()
     val errorMessage: MutableLiveData<String?> get() = _errorMessage
 
 
-    val isEmailError: LiveData<Boolean> get() = _isEmailError
-    val isPWError: LiveData<Boolean> get() = _isPWError
-    val response: LiveData<BasicResponse> get() = _response
+
+
+
 
     init {
         _isEmailError.value = false
+        _isEmailDupli.value = true
         _isPWError.value = false
         _errorMessage.value = null
     }
 
     fun isEmailValid(editable: Editable) {
         _isEmailError.value = !Patterns.EMAIL_ADDRESS.matcher(editable).matches()
+    }
+
+    fun isEmailDuplicateCheck(editable: Editable){
+        viewModelScope.launch {
+            repository.getRequestUserCheck("EMAIL", editable.toString()){
+                if(it is Result.Success){
+                    _isEmailDupli.value = true
+                }else if(it is Result.Error){
+                    _isEmailDupli.value = false
+                }
+            }
+        }
+
     }
 
     fun isPasswordValid(editable: Editable) {
@@ -224,6 +251,7 @@ class LoginViewModel(
             e.printStackTrace()
         }
     }
+
 
 
 

@@ -6,6 +6,12 @@
     <string name="pw">비밀번호</string>
     <string name="pw_error">6자리 이상 입력해주세요</string>
 
+    <string name="singup_email">이메일을 입력해주세요</string>
+    <string name="singup_email_already">이미 가입된 이메일이에요</string>
+
+    <string name="gone">gone</string>
+    <string name="visible">visible</string>
+
 
     <string name="naver_client_id">xI2SBM5QZxCL8W6vlb0_</string>
     <string name="naverClientSecret">QCj5mMKxFP</string>

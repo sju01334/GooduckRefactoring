@@ -29,6 +29,9 @@ class SignupActivity() :BaseActivity<ActivitySignupBinding>() {
                 R.id.signup_step_1 ->{
 
                 }
+                R.id.signup_step_2 ->{
+
+                }
             }
 
         }
@@ -42,11 +45,15 @@ class SignupActivity() :BaseActivity<ActivitySignupBinding>() {
 
     override fun setValues() {
         setSupportActionBar(binding.signupToolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
         setupActionBarWithNavController(navigationController)
 
     }
 
     override fun initAppbar() {
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
     }
 
 }

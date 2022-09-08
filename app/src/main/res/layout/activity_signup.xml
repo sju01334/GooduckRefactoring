@@ -10,16 +10,50 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/signupToolbar"
             android:layout_width="match_parent"
+            app:contentInsetStart="0dp"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:padding="10dp"
+                android:src="@drawable/ic_arrow"
+                app:tint="@color/darkGray" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="회원가입"
+                android:textSize="16sp"
+                android:textColor="@color/darkGray"
+                android:textStyle="bold"
                 android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/totalStep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/5"
+                android:textSize="16sp"
+                android:textColor="@color/darkGray"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/currentStep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="16sp"
+                android:textColor="@color/gooduckPrimary"
+                android:layout_gravity="end" />
+
+
 
         </androidx.appcompat.widget.Toolbar>
 

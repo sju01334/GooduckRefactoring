@@ -54,4 +54,10 @@
     <style name="Theme.GooduckRefactoring.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.GooduckRefactoring.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColorHint">@color/mediumGray</item>
+    </style>
+
 </resources>

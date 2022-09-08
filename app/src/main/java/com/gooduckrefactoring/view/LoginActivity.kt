@@ -68,6 +68,8 @@ class LoginActivity() : BaseActivity<ActivityLoginBinding>() {
             googleLogin()
         }
 
+        binding.signupBtn.setOnClickListener { startActivity(Intent(this, SignupActivity::class.java)) }
+
     }
 
     override fun setValues() {

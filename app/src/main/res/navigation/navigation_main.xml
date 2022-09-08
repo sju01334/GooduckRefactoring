@@ -22,6 +22,12 @@
         android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepTwoFragment"
         tools:layout="@layout/fragment_step_two">
 
+        <argument
+            android:name="args"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
 
     </fragment>
 

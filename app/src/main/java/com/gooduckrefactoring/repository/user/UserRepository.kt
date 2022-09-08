@@ -16,6 +16,10 @@ class UserRepository(private val userDatasource : UserDatasource) {
 
     suspend fun postRequestSocialLogin(provider: String, uid: String, nick: String, result: (Result<BasicResponse>) -> Unit) {
         userDatasource.postRequestSocialLogin(provider, uid, nick, result)
+    }
+
+    suspend fun getRequestUserCheck(type: String, value: String, result: (Result<BasicResponse>) -> Unit) {
+        userDatasource.getRequestUserCheck(type, value, result)
 
     }
 

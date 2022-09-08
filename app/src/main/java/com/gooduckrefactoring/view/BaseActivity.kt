@@ -52,13 +52,12 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         mContext = this
 
 
+        supportActionBar?.let {
+            setCustomActionBar()
+
             viewModel.cartItemList.observe(this){
                 cartCnt.text = it.size.toString()
             }
-
-
-        supportActionBar?.let {
-            setCustomActionBar()
         }
 
     }
