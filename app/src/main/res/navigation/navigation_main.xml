@@ -23,6 +23,36 @@
         <argument
             android:name="email"
             app:argType="string" />
+        <action
+            android:id="@+id/action_signup_step_2_to_signup_step_3"
+            app:destination="@id/signup_step_3" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup_step_3"
+        android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepThreeFragment"
+        tools:layout="@layout/fragment_step_three">
+
+        <action
+            android:id="@+id/action_signup_step_3_to_signup_step_4"
+            app:destination="@id/signup_step_4" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup_step_4"
+        android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepFourFragment"
+        tools:layout="@layout/fragment_step_four">
+
+        <action
+            android:id="@+id/action_signup_step_4_to_signup_step_5"
+            app:destination="@id/signup_step_5" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup_step_5"
+        android:name="com.gooduckrefactoring.view.fragment.signupfragment.StepFiveFragment"
+        tools:layout="@layout/fragment_step_five">
 
     </fragment>
 

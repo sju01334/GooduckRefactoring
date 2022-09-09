@@ -6,22 +6,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.gooduckrefactoring.R
-import com.gooduckrefactoring.databinding.FragmentBestBinding
-import com.gooduckrefactoring.databinding.FragmentStepOneBinding
-import com.gooduckrefactoring.databinding.FragmentStepTwoBinding
+import com.gooduckrefactoring.databinding.*
 import com.gooduckrefactoring.view.SignupActivity
 import com.gooduckrefactoring.view.fragment.BaseFragment
 import com.gooduckrefactoring.viewmodel.LoginViewModel
 import com.nepplus.gooduck.utils.AppUtil
 
-class StepTwoFragment : BaseFragment<FragmentStepTwoBinding>() {
+class StepFiveFragment : BaseFragment<FragmentStepFiveBinding>() {
 
-    override val layoutId: Int = R.layout.fragment_step_two
+    override val layoutId: Int = R.layout.fragment_step_five
 
-    val args: StepTwoFragmentArgs by navArgs()
 
     private val loginViewModel by lazy {
         ViewModelProvider(requireActivity())[LoginViewModel::class.java]
@@ -42,9 +38,7 @@ class StepTwoFragment : BaseFragment<FragmentStepTwoBinding>() {
 
     override fun setupEvents() {
         binding.confirmBtn.setOnClickListener {
-            loginViewModel.signInData.password = binding.editPw.text.toString()
-            val action = StepTwoFragmentDirections.actionSignupStep2ToSignupStep3()
-            Navigation.findNavController(requireView()).navigate(action)
+
         }
 
     }

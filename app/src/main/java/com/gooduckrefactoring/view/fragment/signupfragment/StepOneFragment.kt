@@ -19,7 +19,7 @@ class StepOneFragment : BaseFragment<FragmentStepOneBinding>() {
     override val layoutId: Int = R.layout.fragment_step_one
 
     private val loginViewModel by lazy {
-        ViewModelProvider(this, LoginViewModelFactory(requireActivity().application))[LoginViewModel::class.java]
+        ViewModelProvider(requireActivity())[LoginViewModel::class.java]
     }
 
     override fun init() {
@@ -45,6 +45,7 @@ class StepOneFragment : BaseFragment<FragmentStepOneBinding>() {
 
         binding.confirmBtn.setOnClickListener {
             val email = binding.editId.text.toString()
+            loginViewModel.signInData.email = email
             val action = StepOneFragmentDirections.actionSignupStep1ToSignupStep2(email)
             Navigation.findNavController(requireView()).navigate(action)
         }

@@ -29,6 +29,8 @@ import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
+import com.nepplus.gooduck.models.SignInData
+import com.nepplus.gooduck.models.UserData
 import com.nepplus.gooduck.utils.ContextUtil
 import com.nepplus.gooduck.utils.GlobalData
 import kotlinx.coroutines.CoroutineScope
@@ -44,7 +46,7 @@ class LoginViewModel(
 //    val navigateToDetails : LiveData<Event<Boolean>>
 //        get() = _navigateToDetails
 
-    private lateinit var launcher: ActivityResultLauncher<Intent>
+    var signInData = SignInData()
 
     private var _isEmailError = MutableLiveData<Boolean>()
     val isEmailError: LiveData<Boolean> get() = _isEmailError
@@ -57,6 +59,9 @@ class LoginViewModel(
 
     private var _isNickError = MutableLiveData<Boolean>()
     val isNickError: LiveData<Boolean> get() = _isNickError
+
+    private var _isNickDupli = MutableLiveData<Boolean>()
+    val isNickDupli: LiveData<Boolean> get() = _isNickDupli
 
     private var _response = MutableLiveData<BasicResponse>()
     val response: LiveData<BasicResponse> get() = _response
@@ -87,6 +92,19 @@ class LoginViewModel(
                     _isEmailDupli.value = true
                 }else if(it is Result.Error){
                     _isEmailDupli.value = false
+                }
+            }
+        }
+
+    }
+
+    fun isNickDuplicateCheck(editable: Editable){
+        viewModelScope.launch {
+            repository.getRequestUserCheck("NICK_NAME", editable.toString()){
+                if(it is Result.Success){
+                    _isNickDupli.value = true
+                }else if(it is Result.Error){
+                    _isNickDupli.value = false
                 }
             }
         }

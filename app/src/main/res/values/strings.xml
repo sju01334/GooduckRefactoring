@@ -9,6 +9,9 @@
     <string name="singup_email">이메일을 입력해주세요</string>
     <string name="singup_email_already">이미 가입된 이메일이에요</string>
 
+    <string name="check_pw">비밀번호가 일치해요!</string>
+    <string name="check_pw_error">비밀번호가 일치하지 않아요</string>
+
     <string name="gone">gone</string>
     <string name="visible">visible</string>
 
