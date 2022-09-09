@@ -60,9 +60,7 @@ class StepOneFragment : BaseFragment<FragmentStepOneBinding>() {
                 AppUtil.hideSoftInput(requireContext(), binding.editId)
                 binding.confirmBtn.isVisible = false
                 binding.editId.clearFocus()
-                binding.loginBtn.isVisible = true
             } else {
-                binding.loginBtn.isVisible = false
                 AppUtil.showSoftInput(requireContext(), binding.editId)
                 binding.confirmBtn.isVisible = binding.editId.length() > 1
             }

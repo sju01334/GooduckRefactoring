@@ -79,6 +79,7 @@ class LoginViewModel(
         _isEmailDupli.value = true
         _isPWError.value = false
         _errorMessage.value = null
+        _isNickDupli.value = true
     }
 
     fun isEmailValid(editable: Editable) {

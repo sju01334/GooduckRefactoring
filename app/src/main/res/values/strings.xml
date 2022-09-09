@@ -12,6 +12,9 @@
     <string name="check_pw">비밀번호가 일치해요!</string>
     <string name="check_pw_error">비밀번호가 일치하지 않아요</string>
 
+    <string name="signup_nick">닉네임을 사용할 수 있어요!</string>
+    <string name="signup_nick_already">닉네임이 이미 있어요</string>
+
     <string name="gone">gone</string>
     <string name="visible">visible</string>
 

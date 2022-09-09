@@ -45,9 +45,19 @@ class StepFourFragment : BaseFragment<FragmentStepFourBinding>() {
     }
 
     override fun setValues() {
-        binding.editPw.requestFocus()
-        AppUtil.showSoftInput(requireContext(), binding.editPw)
+        binding.editNick.requestFocus()
+        AppUtil.showSoftInput(requireContext(), binding.editNick)
         binding.confirmBtn.isVisible = false
+
+        loginViewModel.isNickDupli.observe(viewLifecycleOwner){
+            if(it == true){
+                if(binding.editNick.length() < 1){
+                    binding.description.text = "닉네임을 알려주세요"
+                }
+            }
+        }
+
+
     }
 
 

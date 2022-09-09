@@ -102,7 +102,7 @@
             android:layout_marginBottom="24dp"
             app:backgroundTint="@null"
             android:text="로그인 하러가기"
-            android:visibility="gone"
+            android:visibility="@{viewModel.isEmailDupli ?  View.GONE : View.VISIBLE}"
             android:stateListAnimator="@null"
             android:textSize="16sp"
             android:layout_marginTop="34dp"
