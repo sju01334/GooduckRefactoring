@@ -7,7 +7,7 @@ data class SignInData(
     var email : String? = null,
     var password  : String? = null,
     @SerializedName("nick_name")
-    val nickname : String? = null,
+    var nickname : String? = null,
     val phone : String? = null
 ): Serializable {
 }

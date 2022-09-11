@@ -39,6 +39,7 @@ class StepFourFragment : BaseFragment<FragmentStepFourBinding>() {
 
     override fun setupEvents() {
         binding.confirmBtn.setOnClickListener {
+            loginViewModel.signInData.nickname = binding.editNick.text.toString()
 
         }
 
