@@ -8,6 +8,6 @@ data class SignInData(
     var password  : String? = null,
     @SerializedName("nick_name")
     var nickname : String? = null,
-    val phone : String? = null
+    var phone : String? = null
 ): Serializable {
 }

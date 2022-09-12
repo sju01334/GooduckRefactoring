@@ -1,6 +1,7 @@
 package com.gooduckrefactoring.view.fragment.signupfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -40,7 +41,8 @@ class StepFourFragment : BaseFragment<FragmentStepFourBinding>() {
     override fun setupEvents() {
         binding.confirmBtn.setOnClickListener {
             loginViewModel.signInData.nickname = binding.editNick.text.toString()
-
+            val action = StepFourFragmentDirections.actionSignupStep4ToSignupStep5()
+            Navigation.findNavController(requireView()).navigate(action)
         }
 
     }
@@ -49,14 +51,6 @@ class StepFourFragment : BaseFragment<FragmentStepFourBinding>() {
         binding.editNick.requestFocus()
         AppUtil.showSoftInput(requireContext(), binding.editNick)
         binding.confirmBtn.isVisible = false
-
-        loginViewModel.isNickDupli.observe(viewLifecycleOwner){
-            if(it == true){
-                if(binding.editNick.length() < 1){
-                    binding.description.text = "닉네임을 알려주세요"
-                }
-            }
-        }
 
 
     }

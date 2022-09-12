@@ -40,7 +40,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     application: Application,
-    private val repository : UserRepository
+    private val repository: UserRepository,
 ) : AndroidViewModel(application) {
 //    private val _navigateToDetails = MutableLiveData<Event<Boolean>>()
 //    val navigateToDetails : LiveData<Event<Boolean>>
@@ -63,21 +63,24 @@ class LoginViewModel(
     private var _isNickDupli = MutableLiveData<Boolean>()
     val isNickDupli: LiveData<Boolean> get() = _isNickDupli
 
+    private var _isPhoneError = MutableLiveData<Boolean>()
+    val isPhoneError: LiveData<Boolean> get() = _isPhoneError
+
     private var _response = MutableLiveData<BasicResponse>()
     val response: LiveData<BasicResponse> get() = _response
 
+    private var _signInResponse = MutableLiveData<UserData>()
+    val signInResponse: LiveData<UserData> get() = _signInResponse
+
     private var _errorMessage = MutableLiveData<String?>()
     val errorMessage: MutableLiveData<String?> get() = _errorMessage
-
-
-
-
 
 
     init {
         _isEmailError.value = false
         _isEmailDupli.value = true
         _isPWError.value = false
+        _isPhoneError.value = true
         _errorMessage.value = null
         _isNickDupli.value = true
     }
@@ -86,12 +89,12 @@ class LoginViewModel(
         _isEmailError.value = !Patterns.EMAIL_ADDRESS.matcher(editable).matches()
     }
 
-    fun isEmailDuplicateCheck(editable: Editable){
+    fun isEmailDuplicateCheck(editable: Editable) {
         viewModelScope.launch {
-            repository.getRequestUserCheck("EMAIL", editable.toString()){
-                if(it is Result.Success){
+            repository.getRequestUserCheck("EMAIL", editable.toString()) {
+                if (it is Result.Success) {
                     _isEmailDupli.value = true
-                }else if(it is Result.Error){
+                } else if (it is Result.Error) {
                     _isEmailDupli.value = false
                 }
             }
@@ -99,25 +102,27 @@ class LoginViewModel(
 
     }
 
-    fun isNickDuplicateCheck(editable: Editable){
+    fun isNickDuplicateCheck(editable: Editable) {
         viewModelScope.launch {
-            repository.getRequestUserCheck("NICK_NAME", editable.toString()){
-                if(it is Result.Success){
+            repository.getRequestUserCheck("NICK_NAME", editable.toString()) {
+                if (it is Result.Success) {
                     _isNickDupli.value = true
-                }else if(it is Result.Error){
+                } else if (it is Result.Error) {
                     _isNickDupli.value = false
                 }
             }
         }
-
     }
 
     fun isPasswordValid(editable: Editable) {
         _isPWError.value = editable.length < 5
     }
 
-    fun normalLogin(email: String, pw: String) {
+    fun isPhoneValid(editable: Editable) {
+        _isPhoneError.value = editable.length in 0..10
+    }
 
+    fun normalLogin(email: String, pw: String) {
         if (_isEmailError.value == false && _isPWError.value == false) {
             viewModelScope.launch {
                 repository.postRequestLogin(email = email, pw = pw) {
@@ -133,8 +138,6 @@ class LoginViewModel(
         } else {
             _errorMessage.value = "알맞는 정보를 입력해주세요"
         }
-
-
     }
 
     fun socialLoginFromServer(provider: String, uid: String, nick: String) {
@@ -260,7 +263,7 @@ class LoginViewModel(
                 val family = account.familyName
                 val nick = account.displayName
 
-                Log.d("뭐가 들어왔니", family+ nick)
+                Log.d("뭐가 들어왔니", family + nick)
 
                 (nick ?: family)?.let { socialLoginFromServer("google", tokenId.toString(), it) }
 
@@ -271,7 +274,25 @@ class LoginViewModel(
         }
     }
 
-
+    fun signInToServer() {
+        Log.d("이메일", signInData.email.toString())
+        Log.d("비번", signInData.password.toString())
+        Log.d("닉넴", signInData.nickname.toString())
+        Log.d("폰번", signInData.phone.toString())
+        viewModelScope.launch {
+            repository.putRequestSignUp(
+                signInData.email!!.toString(),
+                signInData.password!!.toString(),
+                signInData.nickname!!.toString(),
+                signInData.phone!!.toString()) {
+                if (it is Result.Success) {
+                    _signInResponse.value = it.data
+                } else if (it is Result.Error) {
+                    _errorMessage.value = it.exception
+                }
+            }
+        }
+    }
 
 
 }

@@ -23,6 +23,11 @@ class UserRepository(private val userDatasource : UserDatasource) {
 
     }
 
+    suspend fun putRequestSignUp( email: String, pw: String, nickname: String, phone: String, result: (Result<UserData>) -> Unit) {
+        userDatasource.putRequestSignUp(email,pw,nickname, phone ,result)
+
+    }
+
 
 
 

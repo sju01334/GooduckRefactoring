@@ -9,6 +9,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Field
 
 class UserDatasource {
 
@@ -82,6 +83,28 @@ class UserDatasource {
                     val code = jsonObj.getString("code")
                     result(Result.Error(message))
 //                    Log.d("login_code", code + message)
+                }
+            }
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                t.message?.let { Log.d("########", it) }
+//                result(Result.Error(it))
+            }
+        })
+    }
+
+    suspend fun putRequestSignUp(email: String, pw: String, nickname: String, phone: String, result: (Result<UserData>) -> Unit){
+        RetrofitInstance.apiList.putRequestSignUp( email, pw,nickname, phone).enqueue(object : Callback<BasicResponse> {
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if (response.isSuccessful) {
+                    result(Result.Success(response.body()!!.data!!.user))
+//                    Log.d("login_code",  response.body()!!.toString())
+                } else {
+                    val errorBodyStr = response.errorBody()!!.string()
+                    val jsonObj = JSONObject(errorBodyStr)
+                    val message = jsonObj.getString("message")
+                    val code = jsonObj.getString("code")
+                    result(Result.Error(message))
+                    Log.d("signin_code", code + message)
                 }
             }
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

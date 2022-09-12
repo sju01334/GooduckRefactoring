@@ -25,12 +25,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="30dp"
-            android:text="@{viewModel.signInData.password.equals(editPw.text.toString()) ?   @string/check_pw :  @string/check_pw_error}"
+            android:text="핸드폰 번호를 입력해주세요"
             android:textColor="@color/darkGray"
             android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="올바른 휴대폰 번호를 입력하세요"
+            android:layout_marginStart="5dp"
+            android:visibility="@{viewModel.isPhoneError() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/description"
+            app:layout_constraintStart_toStartOf="@id/description"
+            android:layout_marginTop="10dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/MyTextInputLayout"
@@ -38,21 +48,20 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="48dp"
-            android:hint="비밀번호 확인"
+            android:hint="핸드폰 번호"
             app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@{viewModel.signInData.password.equals(editPw.text.toString()) ?  @color/gooduckPrimary  : @color/errorPink }"
+            app:boxStrokeColor="@{viewModel.isPhoneError() ? @color/errorPink :  @color/gooduckPrimary}"
             app:boxStrokeErrorColor="@color/errorPink"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description"
-            app:passwordToggleEnabled="true">
+            app:layout_constraintTop_toBottomOf="@id/description">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_pw"
+                android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:afterTextChanged="@{viewModel::isPasswordValid}"
-                android:inputType="textPassword"
+                android:afterTextChanged="@{viewModel::isPhoneValid}"
+                android:inputType="number"
                 android:maxLines="1"
                 android:paddingStart="5dp"
                 android:textSize="20sp" />
@@ -69,7 +78,7 @@
             android:stateListAnimator="@null"
             android:text="확인"
             android:textSize="16sp"
-            android:visibility="@{viewModel.signInData.password.equals(editPw.text.toString()) ?  View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.isPhoneError() ? View.GONE : View.VISIBLE }"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
