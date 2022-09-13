@@ -11,11 +11,14 @@ import com.bumptech.glide.Glide
 import com.gooduckrefactoring.databinding.ItemProductFullBinding
 import com.gooduckrefactoring.databinding.ItemProductHorizonBinding
 import com.nepplus.gooduck.models.Product
+import com.nepplus.gooduck.models.SmallCategory
 
 
 class ProductFullRecyclerviewAdapter(
     val onClick : (Product) -> Unit
 ): ListAdapter <Product, ProductFullRecyclerviewAdapter.ItemViewHolder>(differ) {
+
+    var onClickCart : ((Product) -> Unit)? = null
 
     inner class ItemViewHolder(val binding: ItemProductFullBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -29,8 +32,13 @@ class ProductFullRecyclerviewAdapter(
             binding.itemName.text = item.name
             binding.itemPrice.text = "${ item.price }원"
 
-            binding.addCartBtn.setOnClickListener {
+
+            binding.itemImg.setOnClickListener {
                 onClick(item)
+            }
+
+            binding.addCartBtn.setOnClickListener {
+                onClickCart?.invoke(item)
             }
 
         }

@@ -27,6 +27,7 @@
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/r5_primary_stroke_1px.xml" value="0.223" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_login.xml" value="0.44375" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_product_detail.xml" value="0.2" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_products.xml" value="0.1938509640437728" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_sms.xml" value="0.2375" />
@@ -36,10 +37,14 @@
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_best.xml" value="0.2947916666666667" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_category.xml" value="0.2947916666666667" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_cheap.xml" value="0.2947916666666667" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_description.xml" value="0.20208333333333334" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_info.xml" value="0.20208333333333334" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_inquiry.xml" value="0.20208333333333334" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_my_gooduck.xml" value="0.2947916666666667" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_new.xml" value="0.2947916666666667" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_recommand.xml" value="0.2947916666666667" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_review.xml" value="0.20208333333333334" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_search.xml" value="0.33" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_step_five.xml" value="0.26145833333333335" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_step_four.xml" value="0.1" />

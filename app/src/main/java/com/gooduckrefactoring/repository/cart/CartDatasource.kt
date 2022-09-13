@@ -23,7 +23,7 @@ class CartDatasource {
                     val message = jsonObj.getString("message")
                     val code = jsonObj.getString("code")
 //                    result(Result.Error(message))
-                    Log.d("login_code", code + message)
+                    Log.d("cartList_error", code + message)
                 }
             }
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
@@ -43,8 +43,8 @@ class CartDatasource {
                     val jsonObj = JSONObject(errorBodyStr)
                     val message = jsonObj.getString("message")
                     val code = jsonObj.getString("code")
-//                    result(Result.Error(message))
-                    Log.d("login_code", code + message)
+                    result(Result.Error(message))
+                    Log.d("cart_error", code + message)
                 }
             }
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

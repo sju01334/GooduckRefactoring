@@ -18,13 +18,16 @@ class CartViewModel(
     private val _cartItemList: MutableLiveData<List<Cart>> = MutableLiveData()
     val cartItemList: LiveData<List<Cart>> get() = _cartItemList
 
+    private val _errorMsg: MutableLiveData<String> = MutableLiveData()
+    val errorMsg: LiveData<String> get() = _errorMsg
+
     init {
         getAllCartItems()
     }
 
 
     fun getAllCartItems() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.getRequestMyCartList {
                 if (it is Result.Success) {
                     list.clear()
@@ -42,6 +45,8 @@ class CartViewModel(
                 if (it is Result.Success) {
                     list.add(it.data.data!!.cart)
                     _cartItemList.postValue(list)
+                }else if(it is Result.Error){
+                    _errorMsg.value = it.exception
                 }
             }
 

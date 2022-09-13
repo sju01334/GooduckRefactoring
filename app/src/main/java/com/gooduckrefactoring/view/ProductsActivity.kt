@@ -1,6 +1,8 @@
 package com.gooduckrefactoring.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -25,7 +27,7 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
     }
 
     private val cartViewModel by lazy {
-        ViewModelProvider(this)[CartViewModel::class.java]
+        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,16 +36,18 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
         category = intent.getSerializableExtra("selected") as SmallCategory
 
         initAppbar()
+        initRecyclerviewAdapter()
         setValues()
         setupEvents()
-        initRecyclerviewAdapter()
     }
 
     private fun initRecyclerviewAdapter() {
         binding.selectedCategoryProductRecyclerView.apply {
             productAdapter = ProductFullRecyclerviewAdapter(){
-                cartViewModel.addToCartItem(it.id)
-                Toast.makeText(this@ProductsActivity, "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+                Log.d("ProductsActivity", "클릭됨")
+                val myIntent = Intent(this@ProductsActivity, ProductDetailActivity::class.java)
+                myIntent.putExtra("product", it)
+                startActivity(myIntent)
             }
             adapter = productAdapter
             layoutManager = GridLayoutManager(this@ProductsActivity, 2)
@@ -52,6 +56,11 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
     }
 
     override fun setupEvents() {
+        productAdapter.onClickCart = {
+            Log.d("ProductsActivity", "장바구니 클릭")
+            cartViewModel.addToCartItem(it.id)
+//            Toast.makeText(this@ProductsActivity, "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
@@ -63,6 +72,16 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
             productAdapter.submitList(it)
             binding.productCntTxt.text = "총 ${it.size}개"
         }
+
+        cartViewModel.errorMsg.observe(this){
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+
+
+        cartViewModel.cartItemList.observe(this){
+            Toast.makeText(this, "${ it.last().product.name } 을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun initAppbar() {
