@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.gooduckrefactoring.viewmodel.LoginViewModel" />
@@ -140,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="22dp"
-            android:text="또는"
+            android:text="3초 회원가입"
             android:textColor="@color/mediumGray"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,60 +171,37 @@
             app:layout_constraintStart_toEndOf="@id/oror"
             app:layout_constraintTop_toTopOf="@id/oror" />
 
+        <ImageView
+            android:id="@+id/naverLoginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:src="@drawable/ic_naver"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/kakaoLoginBtn" />
 
-        <androidx.appcompat.widget.AppCompatButton
+
+        <ImageView
             android:id="@+id/kakaoLoginBtn"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/r5_kakao_solid"
-            android:drawableStart="@drawable/kakao_logo_40dp"
-            android:drawablePadding="-58dp"
-            android:paddingLeft="18dp"
-            android:stateListAnimator="@null"
-            android:text="카카오로 시작하기"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/black"
-            app:backgroundTint="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="40dp"
+            android:src="@drawable/ic_kakao"
+            app:layout_constraintEnd_toStartOf="@id/naverLoginBtn"
             app:layout_constraintTop_toBottomOf="@id/oror" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/naverLoginBtn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/r5_naver_solid"
-            android:drawableStart="@drawable/naver_logo_40dp"
-            android:drawablePadding="-58dp"
-            android:paddingLeft="18dp"
-            android:stateListAnimator="@null"
-            android:text="네이버로 시작하기"
-            android:textColor="@color/white"
-            android:textColorHighlight="@color/black"
-            app:backgroundTint="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kakaoLoginBtn" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageView
+            android:src="@drawable/ic_google"
             android:id="@+id/googleLoginBtn"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/r5_google_solid"
-            android:drawableStart="@drawable/naver_logo_40dp"
-            android:drawablePadding="-58dp"
-            android:paddingLeft="18dp"
-            android:stateListAnimator="@null"
-            android:text="구글로 시작하기"
-            android:textColor="@color/white"
-            android:textColorHighlight="@color/black"
-            app:backgroundTint="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/naverLoginBtn" />
+            android:layout_marginStart="40dp"
+            app:layout_constraintTop_toTopOf="@id/naverLoginBtn"
+            app:layout_constraintStart_toEndOf="@id/naverLoginBtn"
+            app:layout_constraintBottom_toBottomOf="@id/naverLoginBtn"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
