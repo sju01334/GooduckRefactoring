@@ -12,6 +12,7 @@ import com.gooduckrefactoring.databinding.ItemProductFullBinding
 import com.gooduckrefactoring.databinding.ItemProductHorizonBinding
 import com.nepplus.gooduck.models.Product
 import com.nepplus.gooduck.models.SmallCategory
+import java.text.DecimalFormat
 
 
 class ProductFullRecyclerviewAdapter(
@@ -30,7 +31,8 @@ class ProductFullRecyclerviewAdapter(
                 .into(binding.itemImg)
 
             binding.itemName.text = item.name
-            binding.itemPrice.text = "${ item.price }원"
+            val dec = DecimalFormat("#,###")
+            binding.itemPrice.text = "${ dec.format(item.price) }원"
 
 
             binding.itemImg.setOnClickListener {

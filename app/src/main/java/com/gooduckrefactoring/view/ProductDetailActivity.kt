@@ -1,13 +1,17 @@
 package com.gooduckrefactoring.view
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.HomeViewPagerAdapter
 import com.gooduckrefactoring.adapter.ProductDetailViewPagerAdapter
 import com.gooduckrefactoring.databinding.ActivityProductDetailBinding
+import com.gooduckrefactoring.util.AppBarStateChangeListener
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nepplus.gooduck.models.Product
+import java.text.DecimalFormat
 
 class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
     override val layoutId: Int = R.layout.activity_product_detail
@@ -26,6 +30,8 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
     }
     override fun setupEvents() {
 
+        binding.appbar.addOnOffsetChangedListener(appBarStateChangeListener)
+
     }
 
     override fun setValues() {
@@ -36,7 +42,9 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
 
         binding.productName.text =  "[미진 브랜드] 미진${ mProduct.name }"
         binding.productName2.text = "[미진 브랜드] 미진${ mProduct.name }"
-        binding.price.text = mProduct.price.toString()
+
+        val dec = DecimalFormat("#,###")
+        binding.price.text = "${ dec.format(mProduct.price) }원"
 
 
 
@@ -60,4 +68,17 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
 
     override fun initAppbar() {
     }
+
+    private val appBarStateChangeListener: AppBarStateChangeListener =
+        object : AppBarStateChangeListener() {
+            override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
+                when (state) {
+                    State.EXPANDED -> {binding.productName.isVisible = false}
+                    State.COLLAPSED -> {binding.productName.isVisible = true}
+                    State.IDLE -> {binding.productName.isVisible = false}
+                }
+            }
+        }
+
+
 }

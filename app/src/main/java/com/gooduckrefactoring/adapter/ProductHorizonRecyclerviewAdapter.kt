@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gooduckrefactoring.databinding.ItemProductHorizonBinding
 import com.nepplus.gooduck.models.Product
+import java.text.DecimalFormat
 
 
 class ProductHorizonRecyclerviewAdapter(
@@ -26,7 +27,8 @@ class ProductHorizonRecyclerviewAdapter(
                 .into(binding.itemImg)
 
             binding.itemName.text = item.name
-            binding.itemPrice.text = "${ item.price }원"
+            val dec = DecimalFormat("#,###")
+            binding.itemPrice.text = "${ dec.format(item.price) }원"
 
             binding.addCartBtn.setOnClickListener {
                 onClick(item)
