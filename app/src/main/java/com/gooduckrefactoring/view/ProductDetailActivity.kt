@@ -37,6 +37,7 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
         initAdapter()
         setValues()
         setupEvents()
+        initObserve()
     }
     override fun setupEvents() {
 
@@ -48,12 +49,23 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
             }
             customDialog.show(supportFragmentManager, customDialog.mTag)
         }
+        binding.likeBtn.setOnClickListener {
+            likeFlag = !likeFlag
+            if(likeFlag){
+                binding.likeBtn.setImageDrawable(getDrawable(R.drawable.ic_heart_fill))
+            }else{
+                binding.likeBtn.setImageDrawable(getDrawable(R.drawable.ic_heart))
+            }
+        }
 
-        cartViewModel.errorMsg.observe(this){
+    }
+
+    private fun initObserve() {
+        cartViewModel.errorMsg.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
 
-        cartViewModel.successFlag.observe(this){
+        cartViewModel.successFlag.observe(this) {
             cartViewModel.cartItemList.value?.let {
                 Toast.makeText(this,
                     "${cartViewModel.cartItemList.value!!.last().product.name} 을 장바구니에 담았습니다",
@@ -62,11 +74,9 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
         }
 
 
-        cartViewModel.cartItemList.observe(this){
+        cartViewModel.cartItemList.observe(this) {
             binding.cartCnt.text = it.size.toString()
         }
-
-
     }
 
     override fun setValues() {
