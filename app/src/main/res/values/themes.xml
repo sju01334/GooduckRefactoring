@@ -14,7 +14,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <item name="actionBarTheme">@style/MyActionBar</item>
         <item name="buttonStyle">@style/MyButtonStyle</item>
-
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialog</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -29,6 +29,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowDisablePreview">true</item>
         <item name="buttonStyle">@style/MyButtonStyle</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialog</item>
     </style>
 
 

@@ -77,8 +77,12 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
         }
 
 
-        cartViewModel.cartItemList.observe(this){
-            Toast.makeText(this, "${ it.last().product.name } 을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+        cartViewModel.successFlag.observe(this){
+            cartViewModel.cartItemList.value?.let {
+                Toast.makeText(this,
+                    "${cartViewModel.cartItemList.value!!.last().product.name} 을 장바구니에 담았습니다",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
 
     }

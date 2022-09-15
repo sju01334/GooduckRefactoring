@@ -18,11 +18,15 @@ class CartViewModel(
     private val _cartItemList: MutableLiveData<List<Cart>> = MutableLiveData()
     val cartItemList: LiveData<List<Cart>> get() = _cartItemList
 
+    private val _successFlag: MutableLiveData<Boolean> = MutableLiveData()
+    val successFlag: LiveData<Boolean> get() = _successFlag
+
     private val _errorMsg: MutableLiveData<String> = MutableLiveData()
     val errorMsg: LiveData<String> get() = _errorMsg
 
     init {
         getAllCartItems()
+        _successFlag.value = false
     }
 
 
@@ -45,6 +49,7 @@ class CartViewModel(
                 if (it is Result.Success) {
                     list.add(it.data.data!!.cart)
                     _cartItemList.postValue(list)
+                    _successFlag.value = !_successFlag.value!!
                 }else if(it is Result.Error){
                     _errorMsg.value = it.exception
                 }

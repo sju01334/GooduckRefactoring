@@ -16,6 +16,7 @@
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable-v24/r5_edtgray_solid.xml" value="0.2395" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable-v24/r5_google_solid.xml" value="0.266" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable-v24/r5_red_stroke_1px.xml" value="0.1925" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_add.xml" value="0.231" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_cart.xml" value="0.249" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_gooduck_logo.xml" value="0.185" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_google.xml" value="0.185" />
@@ -23,6 +24,8 @@
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_heart_fill.xml" value="0.231" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_kakao.xml" value="0.185" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_kakao_icon.xml" value="0.185" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_line.xml" value="0.249" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/ic_minus.xml" value="0.231" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/oval_red.xml" value="0.218" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/r25_white_stroke_1px.xml" value="0.2395" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/r5_kakao_solid.xml" value="0.223" />
@@ -31,6 +34,7 @@
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/r5_naver_solid.xml" value="0.223" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/r5_primary_solid.xml" value="0.223" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/r5_primary_stroke_1px.xml" value="0.223" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/drawable/r5_white_fill_top_corner.xml" value="0.249" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_product_detail.xml" value="0.25" />
@@ -40,6 +44,7 @@
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/activity_splash.xml" value="0.3333333333333333" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/custom_action_bar.xml" value="0.75" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/custom_alert_dialog.xml" value="0.3380208333333333" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/custom_bottom_dialog.xml" value="0.25" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_best.xml" value="0.2947916666666667" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_category.xml" value="0.2947916666666667" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_cheap.xml" value="0.2947916666666667" />
@@ -59,6 +64,7 @@
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_step_two.xml" value="0.28802083333333334" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/fragment_today.xml" value="0.4309545875810936" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/item_banner.xml" value="0.36666666666666664" />
+        <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/item_cart.xml" value="0.36666666666666664" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/item_cart_1.xml" value="0.36666666666666664" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/item_category.xml" value="0.33" />
         <entry key="..\:/CMC/GooduckRefactoring/app/src/main/res/layout/item_category_small.xml" value="0.25" />

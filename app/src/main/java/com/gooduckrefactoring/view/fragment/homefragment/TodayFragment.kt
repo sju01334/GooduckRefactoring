@@ -69,8 +69,12 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
         }
 
 
-        cartViewModel.cartItemList.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "${it.last().product.name} 을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+        cartViewModel.successFlag.observe(viewLifecycleOwner){
+            cartViewModel.cartItemList.value?.let {
+                Toast.makeText(requireContext(),
+                    "${cartViewModel.cartItemList.value!!.last().product.name} 을 장바구니에 담았습니다",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
 
     }

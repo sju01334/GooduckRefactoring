@@ -1,13 +1,18 @@
 package com.gooduckrefactoring.view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.HomeViewPagerAdapter
 import com.gooduckrefactoring.adapter.ProductDetailViewPagerAdapter
 import com.gooduckrefactoring.databinding.ActivityProductDetailBinding
+import com.gooduckrefactoring.dialog.CustomBottomDialog
 import com.gooduckrefactoring.util.AppBarStateChangeListener
+import com.gooduckrefactoring.viewmodel.CartViewModel
+import com.gooduckrefactoring.viewmodel.CartViewModelFactory
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nepplus.gooduck.models.Product
@@ -18,6 +23,11 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
 
     lateinit var mProduct : Product
     private lateinit var mPagerAdapter : ProductDetailViewPagerAdapter
+    var likeFlag = false
+
+    private val cartViewModel by lazy {
+        ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +41,31 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
     override fun setupEvents() {
 
         binding.appbar.addOnOffsetChangedListener(appBarStateChangeListener)
+        binding.backBtn.setOnClickListener { finish() }
+        binding.addCart.setOnClickListener {
+            val customDialog = CustomBottomDialog(mProduct) {
+                cartViewModel.addToCartItem(mProduct.id)
+            }
+            customDialog.show(supportFragmentManager, customDialog.mTag)
+        }
+
+        cartViewModel.errorMsg.observe(this){
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+
+        cartViewModel.successFlag.observe(this){
+            cartViewModel.cartItemList.value?.let {
+                Toast.makeText(this,
+                    "${cartViewModel.cartItemList.value!!.last().product.name} 을 장바구니에 담았습니다",
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+        cartViewModel.cartItemList.observe(this){
+            binding.cartCnt.text = it.size.toString()
+        }
+
 
     }
 
@@ -42,13 +77,8 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
 
         binding.productName.text =  "[미진 브랜드] 미진${ mProduct.name }"
         binding.productName2.text = "[미진 브랜드] 미진${ mProduct.name }"
-
         val dec = DecimalFormat("#,###")
         binding.price.text = "${ dec.format(mProduct.price) }원"
-
-
-
-
 
     }
 
@@ -67,7 +97,7 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
     }
 
     override fun initAppbar() {
-        binding.backBtn.setOnClickListener { finish() }
+
     }
 
     private val appBarStateChangeListener: AppBarStateChangeListener =
