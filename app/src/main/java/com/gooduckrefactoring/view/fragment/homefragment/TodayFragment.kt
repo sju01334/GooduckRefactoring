@@ -1,5 +1,6 @@
 package com.gooduckrefactoring.view.fragment.homefragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.gooduckrefactoring.R
 import com.gooduckrefactoring.adapter.BannerRecyclerviewAdapter
 import com.gooduckrefactoring.adapter.ProductHorizonRecyclerviewAdapter
 import com.gooduckrefactoring.databinding.FragmentTodayBinding
+import com.gooduckrefactoring.view.ProductDetailActivity
 import com.gooduckrefactoring.view.fragment.BaseFragment
 import com.gooduckrefactoring.viewmodel.CartViewModel
 import com.gooduckrefactoring.viewmodel.ProductViewModel
@@ -57,6 +59,20 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
 
     override fun setupEvents() {
 
+        productAdapter.onClickCart = {
+            cartViewModel.addToCartItem(it.id)
+//            Toast.makeText(this@ProductsActivity, "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+        }
+
+        cartViewModel.errorMsg.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
+
+        cartViewModel.cartItemList.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), "${it.last().product.name} 을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun setValues() {
@@ -72,7 +88,6 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
         HomeViewModel.productItemList.observe(viewLifecycleOwner) {
             productAdapter.submitList(it)
         }
-
 
 
     }
@@ -102,11 +117,12 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
         }
     }
 
-    private fun initProductRecyclerview(){
+    private fun initProductRecyclerview() {
         binding.productRecyclerView.apply {
-            productAdapter = ProductHorizonRecyclerviewAdapter(){
-                cartViewModel.addToCartItem(it.id)
-                Toast.makeText(requireContext(), "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+            productAdapter = ProductHorizonRecyclerviewAdapter() {
+                val myIntent = Intent(requireContext(), ProductDetailActivity::class.java)
+                myIntent.putExtra("product", it)
+                startActivity(myIntent)
             }
             adapter = productAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

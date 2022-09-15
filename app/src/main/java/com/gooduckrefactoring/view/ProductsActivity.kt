@@ -57,7 +57,6 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
 
     override fun setupEvents() {
         productAdapter.onClickCart = {
-            Log.d("ProductsActivity", "장바구니 클릭")
             cartViewModel.addToCartItem(it.id)
 //            Toast.makeText(this@ProductsActivity, "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
         }

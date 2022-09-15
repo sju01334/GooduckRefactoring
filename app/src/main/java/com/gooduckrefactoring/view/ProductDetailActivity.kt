@@ -67,6 +67,7 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
     }
 
     override fun initAppbar() {
+        binding.backBtn.setOnClickListener { finish() }
     }
 
     private val appBarStateChangeListener: AppBarStateChangeListener =

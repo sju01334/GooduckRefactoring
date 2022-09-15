@@ -17,6 +17,8 @@ class ProductHorizonRecyclerviewAdapter(
     val onClick : (Product) -> Unit
 ): ListAdapter <Product, ProductHorizonRecyclerviewAdapter.ItemViewHolder>(differ) {
 
+    var onClickCart : ((Product) -> Unit)? = null
+
     inner class ItemViewHolder(val binding: ItemProductHorizonBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -30,9 +32,14 @@ class ProductHorizonRecyclerviewAdapter(
             val dec = DecimalFormat("#,###")
             binding.itemPrice.text = "${ dec.format(item.price) }원"
 
-            binding.addCartBtn.setOnClickListener {
+            binding.itemImg.setOnClickListener {
                 onClick(item)
             }
+
+            binding.addCartBtn.setOnClickListener {
+                onClickCart?.invoke(item)
+            }
+
 
         }
     }
