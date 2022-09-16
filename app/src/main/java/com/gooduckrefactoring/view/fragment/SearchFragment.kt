@@ -1,5 +1,6 @@
 package com.gooduckrefactoring.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,6 +20,7 @@ import com.gooduckrefactoring.databinding.FragmentSearchBinding
 import com.gooduckrefactoring.dto.History
 import com.gooduckrefactoring.util.MyItemDecoration
 import com.gooduckrefactoring.view.MainActivity
+import com.gooduckrefactoring.view.ProductDetailActivity
 import com.gooduckrefactoring.viewmodel.*
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -105,6 +107,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             binding.recentLayout.isVisible = false
         }
 
+        productFullAdapter.onClickCart = {
+            cartViewModel.addToCartItem(it.id)
+        }
+
 
     }
 
@@ -122,6 +128,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         historyViewModel.allData.observe(viewLifecycleOwner){
             recentAdapter.submitList(it.map { it.keyword }.take(10))
             (it.isNotEmpty()).also { binding.recentLayout.isVisible = it }
+        }
+
+        cartViewModel.errorMsg.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
+
+        cartViewModel.successFlag.observe(viewLifecycleOwner){
+            cartViewModel.cartItemList.value?.let {
+                Toast.makeText(requireContext(),
+                    "${cartViewModel.cartItemList.value!!.last().product.name} 을 장바구니에 담았습니다",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -164,8 +183,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         binding.searchedRecyclerview.apply {
             productFullAdapter = ProductFullRecyclerviewAdapter(){
-                cartViewModel.addToCartItem(it.id)
-                Toast.makeText(requireContext(), "${it.name}을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+                val myIntent = Intent(requireContext(), ProductDetailActivity::class.java)
+                myIntent.putExtra("product", it)
+                startActivity(myIntent)
             }
             adapter = productFullAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
