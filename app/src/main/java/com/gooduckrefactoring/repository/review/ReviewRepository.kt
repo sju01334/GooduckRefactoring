@@ -17,10 +17,10 @@ class ReviewRepository(private val reviewDatasource : ReviewDatasource) {
         }
     }
 
-    suspend fun getRequestAllReview(result: (Result<BasicResponse>) -> Unit) {
+    fun getRequestAllReview(result: (Result<BasicResponse>) -> Unit) {
         reviewDatasource.getRequestAllReview(result)
-
     }
+
 
 
 

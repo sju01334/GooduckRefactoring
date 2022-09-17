@@ -26,7 +26,7 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
     private lateinit var bannerViewPager: BannerRecyclerviewAdapter
     private lateinit var productAdapter: ProductHorizonRecyclerviewAdapter
 
-    private val HomeViewModel by lazy {
+    private val homeViewModel by lazy {
         ViewModelProvider(this, ProductViewModelFactory())[ProductViewModel::class.java]
     }
 
@@ -80,16 +80,16 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
     }
 
     override fun setValues() {
-        HomeViewModel.bannerItemList.observe(viewLifecycleOwner) {
+        homeViewModel.bannerItemList.observe(viewLifecycleOwner) {
             bannerViewPager.submitList(it)
             binding.totalBanner.text = it.size.toString()
         }
 
-        HomeViewModel.currentPosition.observe(viewLifecycleOwner) {
+        homeViewModel.currentPosition.observe(viewLifecycleOwner) {
             binding.bannerViewpager.currentItem = it
         }
 
-        HomeViewModel.productItemList.observe(viewLifecycleOwner) {
+        homeViewModel.productItemList.observe(viewLifecycleOwner) {
             productAdapter.submitList(it)
         }
 
@@ -100,8 +100,8 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             while (viewLifecycleOwner.lifecycleScope.isActive) {
                 delay(2000)
-                HomeViewModel.getCurrentPosition()?.let {
-                    HomeViewModel.setCurrentPosition(it.plus(1) % HomeViewModel.getTotalBanner()!!)
+                homeViewModel.getCurrentPosition()?.let {
+                    homeViewModel.setCurrentPosition(it.plus(1) % homeViewModel.getTotalBanner()!!)
                 }
             }
         }
@@ -115,7 +115,7 @@ class TodayFragment : BaseFragment<FragmentTodayBinding>() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     binding.currentBanner.text = "${position + 1}"
-                    HomeViewModel.setCurrentPosition(position)
+                    homeViewModel.setCurrentPosition(position)
                 }
             })
         }

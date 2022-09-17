@@ -1,6 +1,7 @@
 package com.gooduckrefactoring.view
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,8 @@ import com.gooduckrefactoring.dialog.CustomBottomDialog
 import com.gooduckrefactoring.util.AppBarStateChangeListener
 import com.gooduckrefactoring.viewmodel.CartViewModel
 import com.gooduckrefactoring.viewmodel.CartViewModelFactory
+import com.gooduckrefactoring.viewmodel.CategoryViewModel
+import com.gooduckrefactoring.viewmodel.CategoryViewModelFactory
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nepplus.gooduck.models.Product
@@ -29,10 +32,16 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
         ViewModelProvider(this, CartViewModelFactory())[CartViewModel::class.java]
     }
 
+    private val categoryViewModel by lazy {
+        ViewModelProvider(this, CategoryViewModelFactory())[CategoryViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mProduct = intent.getSerializableExtra("product") as Product
+        Log.d("productActivity", mProduct.smallCategoryId.toString())
+        categoryViewModel.getSelectedCategoryItems(mProduct.smallCategoryId)
 
         initAdapter()
         setValues()

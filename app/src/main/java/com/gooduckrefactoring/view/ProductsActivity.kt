@@ -44,7 +44,6 @@ class ProductsActivity() : BaseActivity<ActivityProductsBinding>() {
     private fun initRecyclerviewAdapter() {
         binding.selectedCategoryProductRecyclerView.apply {
             productAdapter = ProductFullRecyclerviewAdapter(){
-                Log.d("ProductsActivity", "클릭됨")
                 val myIntent = Intent(this@ProductsActivity, ProductDetailActivity::class.java)
                 myIntent.putExtra("product", it)
                 startActivity(myIntent)
